@@ -55,7 +55,7 @@ this.sonuc = sonuc;
      
         Session sess = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tr = sess.beginTransaction();
-        Topla emp = new Topla();
+        Topla emp = new Topla();  //toplam veritabanının topla tablosu
         
                 
         emp.setSayi1(sayi1);
