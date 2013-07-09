@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>toplama</title>
+    </h:head>
+    <h:body>
+        <div align="center" >
+        <f:view>
+<h:form>
+ <h:panelGrid border="1" columns="2">
+ <h:outputLabel value="sayi1"/>
+ <h:inputText value="#{toplama.sayi1}"/>
+ 
+ <h:outputLabel value="sayi2"/>
+ <h:inputText value="#{toplama.sayi2}"/>
+ 
+ 
+ <h:commandButton value="Hesapla" action="#{toplama.Hesapla}" />
+ <h:outputLabel value="#{toplama.sonuc}"/>
+ 
+
+
+ 
+ </h:panelGrid>
+</h:form>
+</f:view>
+  
+   </div>     
+      
+    </h:body>
+</html>
+
