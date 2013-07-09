@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+        <h:form>
+           
+           
+  <h:panelGrid columns="2"> 
+      
+ <h:outputLabel value="sayı1"/>
+ <h:inputText value="#{Hesapla.sayı1}"/>
+ 
+ <h:outputLabel value="sayı2"/>
+ <h:inputText value="#{Hesapla.sayı2}"/>
+ 
+  <h:outputLabel value="sonuc:"/>
+ <h:outputLabel value="#{Hesapla.sonuc}"/>
+ 
+  </h:panelGrid>
+     
+   <h:panelGrid columns="4"> 
+       
+ <h:commandButton value="Topla" action="#{Hesapla.Topla}"/>
+ <h:commandButton value="Çarp" action="#{Hesapla.Çarp}"/>
+ <h:commandButton value="Çıkar" action="#{Hesapla.Çıkar}"/>
+ <h:commandButton value="Böl" action="#{Hesapla.Böl}"/>
+ 
+  </h:panelGrid>
+ 
+            
+</h:form>
+       </f:view>  
+    </h:body>
+</html>
+
