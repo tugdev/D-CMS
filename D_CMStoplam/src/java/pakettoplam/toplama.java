@@ -9,6 +9,7 @@ import javax.faces.bean.RequestScoped;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
+/** managed bean oldugunu belli etmek icin  */
 @ManagedBean (name="toplama")
 @RequestScoped
 /**
