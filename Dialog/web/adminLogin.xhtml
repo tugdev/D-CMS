@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
  <h:form prependId="false">
-        <p:panel header="Uye Formu">
+        <p:panel header="Login">
             <h:panelGrid columns="2"> 
 
                 <h:outputLabel value="kullanici_adi:*" for="kullanici_adi"></h:outputLabel>
@@ -20,6 +20,8 @@
                 <h:inputSecret  id="parola" value="#{loginBean.password}" required="true"/>  
 
                 <h:commandButton value="Giris" action="#{loginBean.girisYap}" />
+                <h:button value="Hesap Ekle" outcome="HesapEkle" />
+                
 
             </h:panelGrid>
         </p:panel>

@@ -26,9 +26,19 @@ private String password;
 private List admins;
 Iterator sayacY;
 private Dialog admin;
-
+private Dialog a1=new Dialog();
+EntityManagerFactory emf =Persistence.createEntityManagerFactory("DialogPU");
+    EntityManager em =emf.createEntityManager();
     public String getUsername() {
         return username;
+    }
+
+    public Dialog getA1() {
+        return a1;
+    }
+
+    public void setA1(Dialog a1) {
+        this.a1 = a1;
     }
 
     public void setUsername(String username) {
@@ -55,11 +65,10 @@ private Dialog admin;
     public String girisYap()
     {
     int kontrol=0;
-List     getir;
+    List getir;
     try
     {
-    EntityManagerFactory emf =Persistence.createEntityManagerFactory("DialogPU");
-    EntityManager em =emf.createEntityManager();
+    
     em.getTransaction().begin();
     Query sorgu=em.createQuery("FROM Dialog");
     getir=sorgu.getResultList();
@@ -69,7 +78,7 @@ List     getir;
         admin=(Dialog)sayacY.next();
     if(admin.getK_ad().equals(username)&&admin.getPwd().equals(password))
     {
-        System.out.print("girdik:D ");
+        System.out.print("giris yaptık:D ");
         kontrol=1;
     }
     else
@@ -91,4 +100,14 @@ List     getir;
 
     
     
+    public String kaydet(){
+        System.out.println("kullanıcı kaydedildi");
+        
+        em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(this.a1);
+        em.getTransaction().commit();
+        em.close();
+        return "adminLogin.xhtml?faces-redirect=true";
+    }
 }
