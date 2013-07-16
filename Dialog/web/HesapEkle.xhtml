@@ -9,7 +9,7 @@
     </h:head>
     <h:body>
         
-        <f:view>
+       <f:view>
             <h:form>
            
             <p:panel header="Hesap Ekle">        
@@ -19,7 +19,9 @@
  <h:inputText value="#{loginBean.a1.k_ad}"/>
  
  <h:outputLabel value="parola"/>
- <h:inputSecret value="#{loginBean.a1.pwd}"/>
+ <p:password value="#{loginBean.a1.pwd}" feedback="true"   
+                        promptLabel="Lütfen şifre giriniz" weakLabel="Zayıf"  
+                        goodLabel="Orta seviye" strongLabel="Güçlü"/>
  
   
  
