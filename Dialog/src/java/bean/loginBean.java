@@ -101,13 +101,24 @@ EntityManagerFactory emf =Persistence.createEntityManagerFactory("DialogPU");
     
     
     public String kaydet(){
-        System.out.println("kullanıcı kaydedildi");
+       
+        if(a1.getK_ad().equals("") || a1.getPwd().equals(""))
+        {
         
+        return "loginError.xhtml?faces-redirect=true";
+        }
+        else{
+             System.out.println("kullanıcı kaydedildi");
         em = emf.createEntityManager();
         em.getTransaction().begin();
+        
+        
+            
+       
         em.persist(this.a1);
         em.getTransaction().commit();
         em.close();
         return "adminLogin.xhtml?faces-redirect=true";
+         }
     }
 }
