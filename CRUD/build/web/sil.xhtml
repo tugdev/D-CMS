@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body  >
+<h:form>
+<h3>Kullanıcı Listesi</h3>
+<h:dataTable value="#{MyBean.kisiler}" var="c">
+  <h:column>
+   <f:facet name="header">Id</f:facet>
+   #{c.id}
+  </h:column>
+  <h:column>
+   <f:facet name="header">Adı</f:facet>
+   #{c.adi}
+  </h:column>
+  <h:column>
+   <f:facet name="header">Soyadı</f:facet>
+   #{c.soyadi}
+  </h:column>
+  
+ </h:dataTable>
+  <br/>
+ 
+ <h:panelGrid columns="3" >
+ <f:facet name="header">Kişi Sil</f:facet>
+ <h:column>Id No:</h:column>
+ <h:column><h:inputText value="#{MyBean.user.id}" /> </h:column>
+ <h:column> </h:column>
+ <h:column><h:commandButton action="#{MyBean.SIL}" value="Sil" /> </h:column>
+ </h:panelGrid>
+  <br/>
+  <h:commandLink action="index" value="Anasayfa" /> 
+   </h:form>
+</h:body>
+</html>
+

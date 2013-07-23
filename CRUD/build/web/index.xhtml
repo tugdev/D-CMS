@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+    
+   <title>Anasayfa</title>
+    
+</h:head>
+    
+<h:body  >
+<h:form>
+    <center>
+        <div style="margin-top:150px;">
+    <h3 style="color:gray;"> CRUD MENU </h3>
+    <br/>
+        <h:panelGrid columns="4" >
+            <h:column>
+        <h:commandLink action="liste" value="Listele" />
+            </h:column>
+            <h:column>
+        <h:commandLink action="ekle" value="Ekle" />
+            </h:column>
+            <h:column>
+        <h:commandLink action="guncelle" value="Güncelle" />
+            </h:column>
+            <h:column>
+        <h:commandLink action="sil" value="Sil" />
+            </h:column>
+        </h:panelGrid>
+    </div>
+
+    </center>
+</h:form>
+</h:body>
+</html>
