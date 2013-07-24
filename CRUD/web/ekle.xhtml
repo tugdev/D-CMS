@@ -17,7 +17,13 @@
         <h:column><h:inputText value="#{MyBean.user.soyadi}" /> </h:column>
  	</h:panelGrid>
  <br/>
- <h:commandButton action="#{MyBean.KAYDET}" value="Kaydet" />
+
+ 
+ <h:panelGrid columns="2" cellpadding="5">  
+          <h:commandButton action="#{MyBean.KAYDET}" value="Kaydet" />
+ 
+    </h:panelGrid>  
+  
   <br/>
   <h:commandLink action="index" value="Anasayfa" /> 
    </h:form>

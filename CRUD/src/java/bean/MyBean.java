@@ -13,6 +13,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+
+  
+
+
 @ManagedBean(name="MyBean")
 @RequestScoped
 public class MyBean implements Serializable {
@@ -91,5 +95,7 @@ public class MyBean implements Serializable {
   System.out.println("Güncelendi...");
   }
 		return "index";
-	}	
+	}
+        
+       
 }
