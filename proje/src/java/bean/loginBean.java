@@ -129,10 +129,6 @@ private Dialog a1=new Dialog();
              System.out.println("kullanıcı kaydedildi");
         em = emf.createEntityManager();
         em.getTransaction().begin();
-        
-        
-            
-       
         em.persist(this.a1);
         em.getTransaction().commit();
         em.close();

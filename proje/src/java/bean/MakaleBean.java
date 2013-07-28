@@ -38,13 +38,13 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("proje
         this.makale = makale;
     }
     
-    public String reinit() {  
-        makale = new Makale();  
-          
-        return null;  
-    }  
+//    public String reinit() {  
+//        makale = new Makale();  
+//          
+//        return null;  
+//    }  
     
-   @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")
 	public MakaleBean()  {
 //burada "CRUDPU" bir önceki yazıda persistence-unit e verdiğimiz ad. 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("projePU");
@@ -92,7 +92,7 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("proje
 	
 }
 	public String SIL(){ //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon
-  
+ 
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("projePU");
             EntityManager em = emf.createEntityManager();
             makale = em.find(makale.getClass(), makale.getId()); 
