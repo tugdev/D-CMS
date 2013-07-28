@@ -3,6 +3,7 @@
   <persistence-unit name="projePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>entity.Dialog</class>
+    <class>entity.Makale</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.username" value="root"/>

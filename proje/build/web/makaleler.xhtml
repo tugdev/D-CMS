@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Bismillah</title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+            <h:form>
+            <p:panel header="PrimeFaces ile listeleme">
+            <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
+			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Başlık" />
+				</f:facet>
+
+                            <h:outputText value="#{makale.baslik}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Yazar" />
+				</f:facet>
+
+				<h:outputText value="#{makale.yazar}" />
+			</p:column>
+			<p:column>
+				<p:commandButton value="Oku" icon="ui-icon-bullet"
+					onclick="makaleDetailDialogWidget.show();"
+					update=":makaleDetailDialogForm">
+                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
+						value="#{makale}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+            </p:panel>
+            </h:form>
+		<ui:include src="makaleDetailDialog.xhtml" />
+	</h:body>
+</f:view>
+</html>
+
