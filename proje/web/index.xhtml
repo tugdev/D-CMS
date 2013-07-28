@@ -9,7 +9,38 @@
         <title>login formu</title>
     </h:head>
     <h:body>
- <h:form prependId="false">
+
+<h:form>
+  
+            <p:growl id="messages" >  
+  
+  <p:toolbar>  
+    <p:toolbarGroup align="left">  
+        <p:commandButton id="basic" value="Login" onclick="dlg.show()" type="button" icon="ui-icon-extlink"/> 
+        <p:button outcome="hesapEkle" value="Hesap Ekle" icon="ui-icon-star"></p:button> 
+    </p:toolbarGroup>  
+   </p:toolbar>  
+                <p:dialog id="dialog" header="Dynamic Focus" widgetVar="dlg" >  
+                       <h:panelGrid columns="2" cellpadding="5">  
+             
+                        <h:outputLabel value="kullanici_adi:*" for="kullanici_adi"></h:outputLabel>
+                        <h:inputText id="kullanici_adi" value="#{loginBean.username}" required="true"/>  
+
+                        <h:outputLabel value="parola:*" for="parola"></h:outputLabel>
+                        <h:inputSecret  id="parola" value="#{loginBean.password}" required="true"/>  
+
+                        <h:commandButton value="Giris" action="#{loginBean.girisYap()}" />
+                        <h:button value="Hesap Ekle" outcome="hesapEkle" />
+                
+                      </h:panelGrid>
+                </p:dialog> 
+                
+           </p:growl>
+</h:form>
+        
+        
+        
+<!-- <h:form prependId="false">
         <p:panel header="Login">
             <h:panelGrid columns="2"> 
 
@@ -26,7 +57,7 @@
             </h:panelGrid>
         </p:panel>
 
-       </h:form>    
+       </h:form>    -->
 
         
     </h:body>
