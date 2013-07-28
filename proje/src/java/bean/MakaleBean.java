@@ -38,6 +38,12 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("proje
         this.makale = makale;
     }
     
+    public String reinit() {  
+        makale = new Makale();  
+          
+        return null;  
+    }  
+    
    @SuppressWarnings("unchecked")
 	public MakaleBean()  {
 //burada "CRUDPU" bir önceki yazıda persistence-unit e verdiğimiz ad. 

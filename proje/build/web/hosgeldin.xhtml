@@ -45,26 +45,32 @@
 </h:form>
         
         
-         <h:form> 	
- 	<h:panelGrid columns="2" >
- 	<f:facet name="header">Makale ekle</f:facet>
+         <h:form > 
+             
+             <p:panel header="Makale Ekle" style="width:90%;  " >
+                 
+                 <h:panelGrid columns="2" style="margin-left: 70px;" >
+ 	<f:facet name="header"></f:facet>
  	<h:column>baslik:</h:column>
         <h:column><h:inputText value="#{MakaleBean.makale.baslik}" /> </h:column>
  	<h:column>yazar: </h:column>
         <h:column><h:inputText value="#{MakaleBean.makale.yazar}" /> </h:column>
         <h:column>icerik: </h:column>
         <h:column><p:editor value="#{MakaleBean.makale.icerik}" /> </h:column>
- 	</h:panelGrid>
- <br/>
-
- 
- <h:panelGrid columns="2" cellpadding="5">  
-     <h:commandButton action="#{MakaleBean.KAYDET()}" value="Kaydet" />
-<!--     <h:commandButton value="Listele" action="#{MakaleBean.listele()}"/>-->
- 
-    </h:panelGrid>  
-     </h:form>
         
+        <h:commandButton action="#{MakaleBean.KAYDET()}" value="Kaydet" />
+ 	</h:panelGrid>
+ 
+ 
+<!--                 <h:panelGrid columns="2" cellpadding="5" style="margin-top: 10px">  
+     <h:commandButton action="#{MakaleBean.KAYDET()}" value="Kaydet" />
+     <h:commandButton value="Listele" action="#{MakaleBean.listele()}"/>
+ 
+    </h:panelGrid>  <br/>-->
+
+<!-- </p:panel>
+     </h:form>
+        -->
          
 <!--        <h:form>
             <p:panel header="PrimeFaces ile listeleme">
@@ -102,28 +108,41 @@
         </p:column>  
     </p:dataTable>  -->
 
-<h:form>
-            <p:panel header="PrimeFaces ile listeleme">
-            <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
+<!--<h:form>
+            <p:panel header="PrimeFaces ile listeleme" style="width:47%; margin-left:630px; " >-->
+           <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
 			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="5,10,15">
-			<p:column>
+			<p:column style="width:3%">
+				<f:facet name="header">
+					<h:outputText value="id" />
+				</f:facet>
+
+                            <h:outputText value="#{makale.id}" />
+			</p:column>
+                
+                <p:column style="width:15%">
 				<f:facet name="header">
 					<h:outputText value="Başlık" />
 				</f:facet>
 
                             <h:outputText value="#{makale.baslik}" />
 			</p:column>
+                
 
-			<p:column>
+			<p:column style="width:15%">
 				<f:facet name="header">
 					<h:outputText value="Yazar" />
 				</f:facet>
 
 				<h:outputText value="#{makale.yazar}" />
 			</p:column>
-			<p:column>
+                
+                     
+                
+                   
+			<p:column style="width:3%">
 				<p:commandButton value="Oku" icon="ui-icon-bullet"
 					onclick="makaleDetailDialogWidget.show();"
 					update=":makaleDetailDialogForm">
@@ -131,8 +150,26 @@
 						value="#{makale}" />
 				</p:commandButton>
 			</p:column>
-
+                <p:column style="width:3%">
+				<p:commandButton value="Sil" icon="ui-icon-trash"
+					onclick="makaleDetailDialogWidget.show();"
+					update=":makaleDetailDialogForm">
+                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
+						value="#{makale}" />
+				</p:commandButton>
+			</p:column>
+                <p:column style="width:3%">
+				<p:commandButton value="Düzenle" icon="ui-icon-pencil"
+					onclick="makaleDetailDialogWidget.show();"
+					update=":makaleDetailDialogForm">
+                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
+						value="#{makale}" />
+				</p:commandButton>
+			</p:column>
+ 
+  
 		</p:dataTable>
+           
             </p:panel>
             </h:form>
 		<ui:include src="makaleDetailDialog.xhtml" />
