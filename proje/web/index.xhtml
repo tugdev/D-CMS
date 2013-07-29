@@ -14,13 +14,13 @@
   
             <p:growl id="messages" >  
   
-  <p:toolbar>  
+  <p:toolbar style="font-size: smaller">  
     <p:toolbarGroup align="left">  
         <p:commandButton id="basic" value="Login" onclick="dlg.show()" type="button" icon="ui-icon-extlink"/> 
         <p:button outcome="hesapEkle" value="Hesap Ekle" icon="ui-icon-star"></p:button> 
     </p:toolbarGroup>  
    </p:toolbar>  
-                <p:dialog id="dialog" header="Dynamic Focus" widgetVar="dlg" >  
+                <p:dialog id="dialog" header="Dynamic Focus" widgetVar="dlg" style="font-size: smaller" >  
                        <h:panelGrid columns="2" cellpadding="5">  
              
                         <h:outputLabel value="kullanici_adi:*" for="kullanici_adi"></h:outputLabel>
@@ -58,7 +58,47 @@
         </p:panel>
 
        </h:form>    -->
+<h:form>
+    <p:panel header="makaleler" style="width:50%; height: 50%; margin-top: 25px; margin-left: 295px; font-size: smaller;">
+        <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
+			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+			
+                
+                       <p:column style="width:15%">
+				<f:facet name="header">
+					<h:outputText value="Başlık" />
+				</f:facet>
 
-        
+                            <h:outputText value="#{makale.baslik}" />
+			</p:column>
+                
+
+			<p:column style="width:15%">
+				<f:facet name="header">
+					<h:outputText value="Yazar" />
+				</f:facet>
+
+				<h:outputText value="#{makale.yazar}" />
+			</p:column>
+                
+                     
+                
+                   
+			<p:column style="width:3%">
+				<p:commandButton value="Oku" icon="ui-icon-bullet"
+					onclick="makaleDetailDialogWidget.show();"
+					update=":makaleDetailDialogForm">
+                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
+						value="#{makale}" />
+				</p:commandButton>
+			</p:column>
+               
+  
+		</p:dataTable>
+           </p:panel>
+                       </h:form>
+		<ui:include src="makaleDetailDialog.xhtml" />
     </h:body>
 </html>

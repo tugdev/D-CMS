@@ -18,7 +18,7 @@
   
             <p:growl id="messages" >  
   
-  <p:toolbar>  
+  <p:toolbar style="font-size: smaller">  
     <p:toolbarGroup align="left">  
         <p:commandButton type="button" value="New" icon="ui-icon-document" />  
   
@@ -31,14 +31,11 @@
         <p:commandButton type="button" title="Print" icon="ui-icon-print"/>  
     </p:toolbarGroup>  
   
-    <p:toolbarGroup align="right">  
-        <p:menuButton value="Options">  
-            <p:menuitem value="Anasayfa" url="index.xhtml" />  
-            <p:menuitem value="Çıkış"  
-                        outcome="index" />  
-              
-        </p:menuButton>  
-    </p:toolbarGroup>  
+    <p:toolbarGroup align="right"><div>
+            <h:outputText value="Hoşgeldiniz #{loginBean.a1.k_ad}"/>
+                                <div align="center">
+                                    <p:commandLink  action="#{loginBean.cikisButon()}"  value="Çıkış"  ajax="false"  /></div>
+                            </div>    </p:toolbarGroup>
   
   </p:toolbar>  
                 </p:growl>
@@ -47,9 +44,9 @@
         
          <h:form > 
              
-             <p:panel header="Makale Ekle" style="width:90%;  " >
+             <p:panel header="Makale Ekle" style="width:90%; font-size: smaller"  >
                  
-                 <h:panelGrid columns="2" style="margin-left: 70px;" >
+                 <h:panelGrid columns="2"  style="font-size: smaller">
  	<f:facet name="header"></f:facet>
  	<h:column>baslik:</h:column>
         <h:column><h:inputText value="#{MakaleBean.makale.baslik}" /> </h:column>
@@ -113,7 +110,7 @@
            <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
 			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15">
+			rowsPerPageTemplate="5,10,15" style="font-size: smaller">
 			<p:column style="width:3%">
 				<f:facet name="header">
 					<h:outputText value="id" />

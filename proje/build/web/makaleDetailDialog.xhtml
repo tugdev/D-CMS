@@ -6,16 +6,22 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
+   
 	<p:dialog widgetVar="makaleDetailDialogWidget"
-		id="otobusDetailDialogId" width="500" modal="true" closable="true"
-		draggable="false" resizable="false">
+                  id="otobusDetailDialogId" width="600" height="600" modal="true" closable="true"
+		draggable="false" resizable="false" style="font-size: smaller">
+          
 		<h:form id="makaleDetailDialogForm" prependId="false">
+                     
                     <p:panel header="#{MakaleBean.makale.baslik}" footer="#{MakaleBean.makale.yazar}">
 				<h:outputText escape="false"
                                               value="#{MakaleBean.makale.icerik}" />
 			</p:panel>
+                    
 		</h:form>
+              
 	</p:dialog>
+
 </h:body>
 </html>
 

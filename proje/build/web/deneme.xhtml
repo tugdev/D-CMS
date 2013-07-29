@@ -18,7 +18,7 @@
   
             <p:growl id="messages" >  
   
-  <p:toolbar style="font-size: smaller">  
+  <p:toolbar>  
     <p:toolbarGroup align="left">  
         <p:commandButton type="button" value="New" icon="ui-icon-document" />  
   
@@ -32,7 +32,7 @@
     </p:toolbarGroup>  
   
     <p:toolbarGroup align="right"><div>
-            <h:outputText value="Hoşgeldiniz #{loginBean.a1.k_ad}"/>
+            <h:outputText value="Hoşgeldiniz,#{loginBean.a1.k_ad}"/>
                                 <div align="center">
                                     <p:commandLink  action="#{loginBean.cikisButon()}"  value="Çıkış"  ajax="false"  /></div>
                             </div>    </p:toolbarGroup>
@@ -44,9 +44,9 @@
         
          <h:form > 
              
-             <p:panel header="Makale Ekle" style="width:90%; font-size: smaller"  >
+             <p:panel header="Makale Ekle" style="width:90%;  " >
                  
-                 <h:panelGrid columns="2"  style="font-size: smaller">
+                 <h:panelGrid columns="2" style="margin-left: 70px;" >
  	<f:facet name="header"></f:facet>
  	<h:column>baslik:</h:column>
         <h:column><h:inputText value="#{MakaleBean.makale.baslik}" /> </h:column>
@@ -65,52 +65,11 @@
  
     </h:panelGrid>  <br/>
 
-<!-- </p:panel>
-     </h:form>
-        -->
-         
-<!--        <h:form>
-            <p:panel header="PrimeFaces ile listeleme">
-                <p:dataTable value="#{MakaleBean.makaleler}" var="islem" paginator="true"
-                             rows="2" rowsPerPageTemplate="3,10,30,100">
-                    <p:column>
-                        <f:facet name="header">sayý1</f:facet>
-                        <h:outputLabel value="#{islem.baslik}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">sayý2</f:facet>
-                        <h:outputLabel value="#{islem.yazar}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">sonuc</f:facet>
-                        <h:outputLabel value="#{islem.icerik}"/>
-                    </p:column>
-                </p:dataTable>
-            </p:panel>
-        </h:form>-->
 
-<!--<p:dataTable var="isaretci" value="#{MakaleBean.liste}"> 
-        
-        <p:column headerText="isim">  
-            <h:outputText value="#{isaretci.baslik}" />  
-        </p:column>  
-  
-        <p:column headerText="soyisim">  
-            <h:outputText value="#{isaretci.yazar}" />  
-        </p:column>  
-  
-  
-        <p:column headerText="yas">  
-            <h:outputText value="#{isaretci.icerik}" />  
-        </p:column>  
-    </p:dataTable>  -->
-
-<!--<h:form>
-            <p:panel header="PrimeFaces ile listeleme" style="width:47%; margin-left:630px; " >-->
            <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
-			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
+			var="makale" emptyMessage="Şuan Kayıt Bulunmamaktadır" paginator="true" rows="10"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15" style="font-size: smaller">
+			rowsPerPageTemplate="5,10,15">
 			<p:column style="width:3%">
 				<f:facet name="header">
 					<h:outputText value="id" />

@@ -5,8 +5,13 @@
 package bean;
 
 import entity.Dialog;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
@@ -27,6 +32,7 @@ private List admins;
 Iterator sayacY;
 private Dialog admin;
 private Dialog a1=new Dialog();
+private Dialog ekleKullanici;
     
     EntityManagerFactory emf =Persistence.createEntityManagerFactory("projePU");
     EntityManager em =emf.createEntityManager();
@@ -41,6 +47,14 @@ private Dialog a1=new Dialog();
 
     public String getPassword() {
         return password;
+    }
+
+    public Dialog getEkleKullanici() {
+        return ekleKullanici;
+    }
+
+    public void setEkleKullanici(Dialog ekleKullanici) {
+        this.ekleKullanici = ekleKullanici;
     }
 
     public void setPassword(String password) {
@@ -62,7 +76,62 @@ private Dialog a1=new Dialog();
     public void setA1(Dialog a1) {
         this.a1 = a1;
     }
+    private static boolean isSessionOpen;
+
+    public static boolean isIsSessionOpen() {
+        return isSessionOpen;
+    }
+
+    public static void setIsSessionOpen(boolean isSessionOpen) {
+        loginBean.isSessionOpen = isSessionOpen;
+    }
+    private static List<Dialog> kullanicilar=new ArrayList<Dialog>();
     
+    public boolean checkValidUser() {
+        //selectRealAdmin();
+
+        if (a1.getK_ad() != null ) {
+            for (Dialog real : kullanicilar) {
+                if (a1.getK_ad().equals(real.getK_ad())) {
+
+
+                    if (getMD5(a1.getPwd()).equals(real.getPwd())) {
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashtext = number.toString(16);
+            // Now we need to zero pad it if you actually want the full 32 chars.
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+     @PostConstruct
+    public void kullaniciConst() {
+
+         boolean b;
+        b = checkValidUser();
+        setIsSessionOpen(b);
+     
+        if (this.ekleKullanici == null) {
+            this.ekleKullanici = new Dialog();
+
+        }
+    }
     public String girisYap()
     {
     int kontrol=0;
@@ -135,4 +204,11 @@ private Dialog a1=new Dialog();
         return "index.xhtml?faces-redirect=true";
          }
     }
+     public String cikisButon() {
+        a1 = new Dialog();
+        ekleKullanici = new Dialog();
+ return "index.xhtml?faces-redirect=true";
+        
+    }
+     
 }
