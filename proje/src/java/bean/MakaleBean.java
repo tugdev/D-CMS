@@ -74,7 +74,7 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("proje
     }
 	
 	
-	public void KAYDET(){ //veritabanımıza insert işlemlerinin gerçekleştirildiği fonksiyon 
+	public String KAYDET(){ //veritabanımıza insert işlemlerinin gerçekleştirildiği fonksiyon 
             // sürekli olarak EntityManagerFactory ve EntityManager ürettiğimiz için
             // perpormans sorunlarıyla karşılaşabilirz.Faces-config de	ContextListener tanımlayarak
             // performansımızı arttırabiliriz.
@@ -86,7 +86,7 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("proje
             em.close();
             emf.close();
             System.out.println("Kaydedildi...");
-
+return "makaleler.xhtml?faces-redirect=true";
 
 
 	

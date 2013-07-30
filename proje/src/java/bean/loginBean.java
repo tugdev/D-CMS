@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -147,22 +149,25 @@ private Dialog ekleKullanici;
     {
         admin=(Dialog)sayacY.next();
     
-        if ("admin".equals(username)&&"admin".equals(password))
+
+        if (admin.getK_ad().equals("admin")&&admin.getPwd().equals("admin"))
       {
-        System.out.print("giris yaptık:D ");
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Admin giriş."));
+            ekleKullanici = new Dialog();
         kontrol=2;
       }
-     
+        else if("".equals(admin.getK_ad())|| "".equals(admin.getPwd())){
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "lütfen bşlukları doldurunuz."));
+            ekleKullanici = new Dialog();
+        kontrol=3;
+        }
        else if (admin.getK_ad().equals(username)&&admin.getPwd().equals(password))
      {
-        System.out.print("giris yaptık:D ");
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Kullanıcı Girisi."));
+            ekleKullanici = new Dialog();
         kontrol=1;
     }
-//    if (admin.getK_ad().equals(username)&&admin.getPwd().equals(password))
-//     {
-//        System.out.print("giris yaptık:D ");
-//        kontrol=1;
-//    }
+
     else
         System.out.print("yokmuş:D ");
     }
@@ -176,10 +181,12 @@ private Dialog ekleKullanici;
     
     if(kontrol==2)
          return "adminim.xhtml?faces-redirect=true";
+    else if(kontrol==3)
+        return "index.xhtml?faces-redirect=true";
     else if(kontrol==1)
         return "hosgeldin.xhtml?faces-redirect=true";
     else
-        return "loginError.xhtml?faces-redirect=true";
+        return "index.xhtml?faces-redirect=true";
  
     }
 

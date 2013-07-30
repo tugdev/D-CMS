@@ -39,25 +39,7 @@
 </h:form>
         
         
-        
-<!-- <h:form prependId="false">
-        <p:panel header="Login">
-            <h:panelGrid columns="2"> 
 
-                <h:outputLabel value="kullanici_adi:*" for="kullanici_adi"></h:outputLabel>
-                <h:inputText id="kullanici_adi" value="#{loginBean.username}" required="true"/>  
-
-                <h:outputLabel value="parola:*" for="parola"></h:outputLabel>
-                <h:inputSecret  id="parola" value="#{loginBean.password}" required="true"/>  
-
-                <h:commandButton value="Giris" action="#{loginBean.girisYap()}" />
-                <h:button value="Hesap Ekle" outcome="hesapEkle" />
-                
-
-            </h:panelGrid>
-        </p:panel>
-
-       </h:form>    -->
 <h:form>
     <p:panel header="makaleler" style="width:50%; height: 50%; margin-top: 25px; margin-left: 295px; font-size: smaller;">
         <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
@@ -98,6 +80,7 @@
   
 		</p:dataTable>
            </p:panel>
+    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
                        </h:form>
 		<ui:include src="makaleDetailDialog.xhtml" />
     </h:body>
