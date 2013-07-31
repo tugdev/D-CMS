@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel header="PrimeFaces ile listeleme">
+                <p:dataTable value="#{editBean.allRecordList}" var="items" paginator="true"
+                             rows="5" rowsPerPageTemplate="5,10,30"
+                             paginatorTemplate="{FirstPageLink} {PageLinks} {NextPageLink}
+                             {RowsPerPageDropdown}">
+                    <p:column>
+                        <f:facet name="header">Kategori Id</f:facet>
+                        <h:outputText value="#{items.kategoriId}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Ad</f:facet>
+                        <h:outputText value="#{items.kategoriAdi}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Ust Kategori Id</f:facet>
+                        <h:outputText value="#{items.katUstId}"/>
+                    </p:column>
+                    </p:dataTable>
+                
+                    <p:column>
+                        <h:column>Düzenlemek İstediğiniz Kategorinin Kategori Id No:</h:column>
+                        <h:column><h:inputText value="#{nodeBean.kat.kategoriId}" /> </h:column>
+                        <br></br>
+                        <h:column>Kategori Adı:</h:column>
+                        <h:column><h:inputText value="#{nodeBean.kat.kategoriAdi}" /> </h:column>
+                        <br></br>
+                        <p:commandButton action="#{nodeBean.duzenle()}" value="Düzenle" ajax="false" update="panel"/> 
+                    </p:column>
+                <br></br>
+                <h:outputLink value="index.xhtml">Ana Sayfa</h:outputLink>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

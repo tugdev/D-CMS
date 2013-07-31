@@ -97,5 +97,5 @@ public class MyBean implements Serializable {
 		return "index";
 	}
         
-       
+   
 }
