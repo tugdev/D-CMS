@@ -34,8 +34,6 @@ public class Kategoriler implements Serializable {
     private String kategoriAdi;
     @Column(name = "kat_ust_id")
     private Integer katUstId;
-    @Column(name = "aktifpasif")
-    private Integer aktifPasif;
     
     public Kategoriler() {
     }
@@ -82,13 +80,8 @@ public class Kategoriler implements Serializable {
         this.katUstId = katUstId;
     }
 
-    public Integer getAktifPasif() {
-        return aktifPasif;
-    }
+  
 
-    public void setAktifPasif(Integer aktifPasif) {
-        this.aktifPasif = aktifPasif;
-    }
     
     
 
