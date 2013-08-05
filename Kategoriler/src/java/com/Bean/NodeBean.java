@@ -6,9 +6,9 @@
 package com.Bean;
 
 
-import com.kategori.Dialog;
 import com.kategori.Kategoriler;
 import com.kategori.KategorilerJpaController;
+import java.awt.event.ActionEvent;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,6 @@ public class NodeBean {
     private Kategoriler katNesnesi;
     private List<Kategoriler> subList2;
     private String kategIsmi;
-    
    
     private Kategoriler kat = new Kategoriler();
 
