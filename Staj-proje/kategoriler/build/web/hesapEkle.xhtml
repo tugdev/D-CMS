@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jsp/jstl/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:p="http://primefaces.org/ui"> 
+
+    <f:view contentType="text/html">
+    <h:head>
+        <title>Kullanıcı İşlemleri</title>
+    </h:head>
+    <h:body>
+         
+<h:form id="form2">  
+       <p:toolbar style="font-size: smaller; background-color: lightcoral">  
+    <p:toolbarGroup align="left">  
+        <p:button outcome="login" id="basic" value="Login"  icon="ui-icon-extlink" style="font-size: smaller; background-color: whitesmoke"/> 
+        <p:button outcome="hesapEkle" value="Hesap Ekle" icon="ui-icon-star" style="font-size: smaller; background-color: whitesmoke"></p:button> 
+    </p:toolbarGroup>  
+   </p:toolbar>   
+                
+       
+           
+<h:outputText value="Hesap Ekle"  style="position: absolute;top:190px;left:630px; text-align: center;font-size: 20px;font-style: italic;color: burlywood"/>
+      <p:panel id="panel"  style="background-color: lightcoral; width: 25%; height: 55%; text-align: center; margin-left: 35%;margin-top:15%;min-width:400px; " >
+           
+        <h:panelGrid columns="2" cellpadding="5" >  
+            <h:outputLabel  value="Kullanici Adi:" />  
+            <p:inputText value="#{kullaniciManaged.ekleKullanici.ad}"   
+                         id="username" style="font-size: smaller; background-color: whitesmoke" >
+               
+            </p:inputText>
+             
+            <h:outputLabel  value="Sifre:" />  
+            <h:inputSecret value="#{kullaniciManaged.ekleKullanici.sifre}"   
+                    id="password" style="font-size: smaller; background-color: whitesmoke"/> 
+           
+            
+            <h:outputLabel value="Kullanici Yetkisi"/>
+            
+           
+            <p:selectOneRadio  style="font-size: smaller; " value="#{kullaniciManaged.ekleKullanici.rol}"  >
+                                     <f:selectItem   itemLabel="user" itemValue="user"/>
+              </p:selectOneRadio>
+             
+        </h:panelGrid>  
+          
+            <p:column></p:column>
+            <p:column>
+           <p:commandButton id="loginButton" value="Ekle" update="form2"   
+                                 action="#{kullaniciManaged.ekle()}" 
+                                 ajax="false" style="font-size: x-small; background-color: whitesmoke"
+                    /> 
+                <p:commandButton id="iptalButton" value="İptal"  update="form2" ajax="false"
+                                 action="#{kullaniciManaged.iptalButton()}" style="font-size: x-small; background-color: whitesmoke"/>
+                <p:commandButton id="temizleButton" value="Temizle" update="form2" ajax="false"
+                                 action="#{kullaniciManaged.temizle()}" style="font-size: x-small; background-color: whitesmoke"/>
+                      </p:column>
+<!--        </h:panelGrid>  -->
+<!--    </p:tab>  
+               
+          </p:tabView>  -->
+      </p:panel>
+                <p:messages id="messages" closable="true" showDetail="true" autoUpdate="true"  />
+                
+                       
+</h:form>  
+    
+    </h:body>
+</f:view>
+</html>
+

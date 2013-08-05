@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui">
+   
+    
+    <f:view contentType="text/html">
+    <h:head>
+        <title>Silme Sayfası</title>
+    </h:head>
+    <h:body>
+       
+       
+ <h:form>
+            <p:panel id="panel" header="PrimeFaces ile listeleme">
+                <p:dataTable value="#{editBean.allRecordList}" var="items" paginator="true"
+                             rows="5" rowsPerPageTemplate="5,10,30"
+                             paginatorTemplate="{FirstPageLink} {PageLinks} {NextPageLink}
+                             {RowsPerPageDropdown}">
+                     <p:column>
+                        <f:facet name="header">Kategori Id</f:facet>
+                        <h:outputText value="#{items.kategoriId}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Ad</f:facet>
+                        <h:outputText value="#{items.kategoriAdi}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Ust Kategori Id</f:facet>
+                        <h:outputText value="#{items.katUstId}"/>
+                    </p:column>
+
+
+                  <p:column>
+                        <f:facet name="header">Sil</f:facet>
+             <p:commandButton id="selectButton"  action="#{nodeBean.sil()}" icon="ui-icon-trash" title="Sil">  
+                 <f:setPropertyActionListener value="#{items.kategoriId}" target="#{nodeBean.kat.kategoriId}" />  
+            </p:commandButton> 
+                    </p:column>
+
+                </p:dataTable>
+
+                <h:outputLink value="index.xhtml">Ana Sayfa</h:outputLink>
+            </p:panel>
+        <p:messages id="messages" showDetail="true" autoUpdate="true"  />
+        
+   </h:form>
+            
+    </h:body>
+        </f:view>
+</html>
+
