@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Admin Sayfası</title>
+    </h:head>
+    <h:body>
+        <ul id="d">
+
+        </ul>
+        <h:form>
+            <p:panel id="panelId">
+                <p:tree value="#{nodeBean.root}" var="node" dynamic="true"
+                        selectionMode="single" selection="#{nodeBean.selectedNode}">
+                    <p:treeNode>
+                        <h:outputText value="#{node}"/>
+                    </p:treeNode>
+                </p:tree>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Alt kategori ismi*:"/>
+                    <h:inputText id="id" value="#{nodeBean.kategIsmi}" required="true">
+                        <f:validateLength minimum="1" maximum="30"/>
+                    </h:inputText>
+                    <p:commandButton value="Yeni Kategori Ekle" update="panelId" action="#{nodeBean.yeniKatEkle}" async="true"/>
+                     
+
+                </h:panelGrid>
+                <h:message for="id"/>
+            </p:panel>
+        </h:form>
+        
+        <h:form>
+            <p:panel>
+                <p:column>
+                    <h:commandButton action="sil" value="Sil Sayfasina Gidin"/>
+                    <h:commandButton action="edit" value="Düzenle Sayfasina Gidin"/>
+                    <h:commandButton action="akpa" value="Kullanıcı Aktif Pasif"/>
+                </p:column>
+            </p:panel>
+        </h:form>
+
+       
+
+    </h:body>
+</html>
+

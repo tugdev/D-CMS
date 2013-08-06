@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>makaleler</title>
+    </h:head>
+    <h:body>
+ <h:form>
+            
+     
+     
+     <p:panel header="PrimeFaces ile listeleme">
+                <p:dataTable value="#{editBean.allRecordList}" var="items" 
+                             style="width: 10px">
+                    
+                    <p:column>
+                        <f:facet name="header">Ad</f:facet>
+                        <h:outputText value="#{items.kategoriAdi}"/>
+                    </p:column>
+                    
+                    </p:dataTable>
+                
+               
+            </p:panel>
+        </h:form>
+    </h:body>         
+</html>
+

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jsp/jstl/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:p="http://primefaces.org/ui"> 
+
+<f:view contentType="text/html">
+    <h:head>
+        <title>Login formu</title>
+    </h:head>
+    <h:body>
+<!--         <ui:composition template="/Template.xhtml">
+
+             <ui:define name="content" >-->
+         <h:form id="form">     
+       <p:toolbar style="font-size: smaller; background-color: lightcoral">  
+    <p:toolbarGroup align="left">  
+        <p:button outcome="login" id="basic" value="Login"  icon="ui-icon-extlink" style="font-size: smaller; background-color: whitesmoke"/> 
+        <p:button outcome="hesapEkle" value="Hesap Ekle" icon="ui-icon-star" style="font-size: smaller; background-color: whitesmoke"></p:button> 
+    </p:toolbarGroup>  
+   </p:toolbar>   
+                
+
+     
+        <h:outputText value="Login Formu"  style="position: absolute;top:170px;left:630px; text-align: center;font-size: 20px;font-style: italic;color: burlywood"/>
+        <p:panel id="panel"  style="background-color: lightcoral; width: 25%; height: 55%; text-align: center; margin-left: 37%;margin-top:15%;min-width:370px; " >
+        <h:panelGrid columns="2" cellpadding="5" > 
+                   
+            <h:outputLabel  value="Kullanici Adi:" />  
+            <p:inputText value="#{kullaniciManaged.kullanici.ad}"   
+                         id="username" style="font-size: smaller; background-color: whitesmoke"/>
+             
+            <h:outputLabel  value="Sifre:" />  
+            <h:inputSecret  value="#{kullaniciManaged.kullanici.sifre}"   
+                         id="password" style="font-size: smaller; background-color: whitesmoke"/>  
+              
+              
+          <p:commandButton id="loginButton" value="Giriş" update="panel"   
+                                 action="#{kullaniciManaged.dene()}" 
+                                 ajax="false" style="font-size: smaller; background-color: whitesmoke" /> 
+          <p:commandButton action="#{kullaniciManaged.araTemizle()}" value="Temizle" update="panel" ajax="false" style="font-size: smaller; background-color: whitesmoke"/>
+                
+        </h:panelGrid>  
+          
+           </p:panel>
+            
+            
+            
+           <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
+           
+</h:form>  
+<!--        </ui:define></ui:composition> -->
+    </h:body>
+</f:view>
+</html>
+
+

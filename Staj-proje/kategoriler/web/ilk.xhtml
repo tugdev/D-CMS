@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>makaleler</title>
+    </h:head>
+    <h:body>
+        
+        
+        
+    <p:toolbar style="font-size: smaller; background-color: lightcoral">  
+    <p:toolbarGroup align="left">  
+        <p:button outcome="login" id="basic" value="Login"  icon="ui-icon-extlink" style="font-size: smaller; background-color: whitesmoke"/> 
+        <p:button outcome="hesapEkle" value="Hesap Ekle" icon="ui-icon-star" style="font-size: smaller; background-color: whitesmoke"></p:button> 
+    </p:toolbarGroup>  
+   </p:toolbar>       
+        
+        
+<h:form >
+    <p:panel header="makaleler" style="width:50%; height: 50%; margin-top: 25px; margin-left: 295px; font-size: smaller;">
+        <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
+			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+			
+                
+                       <p:column style="width:15%">
+				<f:facet name="header">
+					<h:outputText value="Başlık" />
+				</f:facet>
+
+                            <h:outputText value="#{makale.baslik}" />
+			</p:column>
+                
+
+			<p:column style="width:15%">
+				<f:facet name="header">
+					<h:outputText value="Yazar" />
+				</f:facet>
+
+				<h:outputText value="#{makale.yazar}" />
+			</p:column>
+                
+                     
+                
+                   
+			<p:column style="width:3%">
+				<p:commandButton value="Oku" icon="ui-icon-bullet"
+					onclick="makaleDetailDialogWidget.show();"
+					update=":makaleDetailDialogForm">
+                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
+						value="#{makale}" />
+				</p:commandButton>
+			</p:column>
+               		</p:dataTable>
+        <h:outputLink value="makaleler.xhtml">Makaleler</h:outputLink> -
+        <h:outputLink value="hosgeldin.xhtml">Makale Ekle</h:outputLink> 
+        
+        </p:panel>
+    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
+                       </h:form>
+		<ui:include src="makaleDetailDialog.xhtml" />
+    </h:body>         
+</html>
+

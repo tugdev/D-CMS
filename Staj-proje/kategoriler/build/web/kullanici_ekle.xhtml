@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jsp/jstl/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:p="http://primefaces.org/ui"> 
+
+    <f:view contentType="text/html" beforePhase="#{kullaniciManaged.listeDoldur()}">
+    <h:head>
+        <title>Kullanıcı İşlemleri</title>
+    </h:head>
+    <h:body>
+         
+
+                
+       <h:form id="form2">  
+           
+           <p:tabView   orientation="left"  id="tabVi"  style="border-style: none;background-color: cornflowerblue;">  
+               
+               <p:tab id="ekle" title="Kullanici Ekle"  >  
+        <h:panelGrid columns="2" cellpadding="10" >  
+             
+      
+           
+        <h:panelGrid columns="2" cellpadding="5" >  
+            <h:outputLabel  value="Kullanici Adi:" />  
+            <p:inputText value="#{kullaniciManaged.ekleKullanici.ad}"   
+                         id="username"  >
+               
+            </p:inputText>
+             
+            <h:outputLabel  value="Sifre:" />  
+            <p:inputText value="#{kullaniciManaged.ekleKullanici.sifre}"   
+                    id="password">  
+            </p:inputText>
+            
+            <h:outputLabel value="Kullanici Yetkisi"/>
+            
+           
+            <p:selectOneRadio value="#{kullaniciManaged.ekleKullanici.rol}"  >
+              
+                                    <f:selectItem   itemLabel="admin" itemValue="admin"/> 
+                                     <f:selectItem   itemLabel="user" itemValue="user"/>
+              </p:selectOneRadio>
+                
+                    
+                
+            
+        </h:panelGrid>  
+          
+           
+            <p:column></p:column>
+            <p:column>
+           <p:commandButton id="loginButton" value="Ekle" update="form2"   
+                                 action="#{kullaniciManaged.ekle()}" 
+                                 ajax="false"
+                    /> 
+                <p:commandButton id="iptalButton" value="İptal"  update="form2" ajax="false"
+                                 action="#{kullaniciManaged.iptalButton()}"/>
+                <p:commandButton id="temizleButton" value="Temizle" update="form2" ajax="false"
+                                 action="#{kullaniciManaged.temizle()}"/>
+                      </p:column>
+        </h:panelGrid>  
+    </p:tab>  
+               <p:tab title="Kullanici Sil" id="sil" >  
+                   <h:panelGrid id="ppp" columns="2" cellpadding="10">  
+                       <p:dataTable id="dsil" value="#{kullaniciManaged.kullanicilar}" var="kullanicilar" style="background-color: cornflowerblue">
+                    <p:column headerText="Kullanici Adı">
+                        #{kullanicilar.ad}
+                        
+                    </p:column>
+                    <p:column headerText="Yetki :">
+                       #{kullanicilar.rol}
+                        
+                    </p:column>
+                    <p:column>
+                       <p:commandButton update="form2" value="Kisi Sil" action="#{kullaniciManaged.silKullanici()}" ajax="false"
+
+                                        ><f:setPropertyActionListener target="#{kullaniciManaged.sil}" value="#{kullanicilar}" />
+                </p:commandButton> 
+                    </p:column>
+                </p:dataTable>
+        </h:panelGrid>  
+    </p:tab>  
+          </p:tabView>  
+                <p:messages id="messages" closable="true" showDetail="true" autoUpdate="true"  />
+                
+               
+             
+</h:form>  
+    
+    </h:body>
+</f:view>
+</html>
