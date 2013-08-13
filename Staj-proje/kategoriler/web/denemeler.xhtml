@@ -9,7 +9,7 @@
 
     <f:view contentType="text/html" >
         <h:head>
-            <title>panel1</title>
+            <title>Ek Notlar</title>
         </h:head>
         <h:body>
             <ui:composition template="/Template.xhtml">
@@ -82,28 +82,12 @@
 						value="#{makale}" />
 				</p:commandButton>
 			</p:column>
-<!--            
             <p:column style="width:30%">
                     <p:commandButton id="selectButton" value="Sil"  action="#{MakaleBean.SIL()}" icon="ui-icon-trash" title="Sil">  
                         <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
-                      </p:commandButton> 
-			</p:column>-->
-    
-            <p:column id="msg" style="width:30%">
-                    <p:commandButton value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
-                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
-                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
-                            
-                            
-
-                            <p:commandButton id="selectButton" value="yes"  action="#{MakaleBean.SIL()}" update="msg makalelerTable" oncomplete="cd.hide()">  
-                        <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
-                      </p:commandButton> 
-                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
-                        </p:confirmDialog>
-                     
-                      </p:commandButton> 
-			</p:column>           
+            </p:commandButton> 
+			</p:column>
+               
                
                 <p:column style="width:20%">
 				<p:commandButton value="Düzenle" icon="ui-icon-pencil"

@@ -89,22 +89,27 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
             // sürekli olarak EntityManagerFactory ve EntityManager ürettiğimiz için
             // perpormans sorunlarıyla karşılaşabilirz.Faces-config de	ContextListener tanımlayarak
             // performansımızı arttırabiliriz.
+            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
             EntityManager em = emf.createEntityManager();
-           
+            
+          
+         
             em.getTransaction().begin();
             em.persist(this.makale);
+           
             em.getTransaction().commit();
             em.close();
             emf.close();
             System.out.println("Kaydedildi...");
-return "makaleler.xhtml?faces-redirect=true";
+        return "giris.xhtml?faces-redirect=true";
 
 
 	
 }
 	public String SIL(){ //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon
- 
+            
+            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
             EntityManager em = emf.createEntityManager();
             makale = em.find(makale.getClass(), makale.getId()); 
@@ -117,7 +122,7 @@ return "makaleler.xhtml?faces-redirect=true";
             emf.close();
             System.out.println("Silindi...");
 
-            return "index";
+            return "giris.xhtml?faces-redirect=true";
 }
 	public String GUNCELLE(){ //veritabanımıza update işlemlerinin gerçekleştirildiği fonksiyon
             if(makale.getId()>0){
