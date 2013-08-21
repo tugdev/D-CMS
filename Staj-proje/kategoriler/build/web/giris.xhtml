@@ -27,11 +27,28 @@
         <h:column><h:inputText value="#{MakaleBean.makale.baslik}" /> </h:column>
  	<h:column>yazar: </h:column>
         <h:column><h:inputText value="#{MakaleBean.makale.yazar}" /> </h:column>
+        
+         <h:column>Kategori seciniz : </h:column>
+         <h:column>
+                <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
+               <f:selectItems value="#{editBean.allRecordList}" var="items"
+                   itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
+               </h:selectOneMenu> 
+        </h:column>
+         
         <h:column>icerik: </h:column>
         <h:column><p:editor value="#{MakaleBean.makale.icerik}" /> </h:column>
-        
-        
+       
  	</h:panelGrid>
+                       
+                       
+      <!--kategoriler sectbox-->                 
+<!--        <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
+        <f:selectItems value="#{editBean.allRecordList}" var="items"
+            itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
+        </h:selectOneMenu> 
+                       -->
+                       
  </p:panel>
                                   <h:panelGrid columns="2" cellpadding="5" style="margin-top: 10px">  
      <h:commandButton action="#{MakaleBean.KAYDET()}" value="Kaydet" />

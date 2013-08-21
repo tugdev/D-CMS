@@ -29,11 +29,31 @@
         <h:column><h:inputText value="#{MakaleBean.makale.yazar}" /> </h:column>
         <h:column>icerik: </h:column>
         <h:column><p:editor value="#{MakaleBean.makale.icerik}" /> </h:column>
+      </h:panelGrid>
         
-        
- 	</h:panelGrid>
+                       
+                         <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
+        <f:selectItems value="#{editBean.allRecordList}" var="items"
+            itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
+        </h:selectOneMenu>  
  </p:panel>
-                                  <h:panelGrid columns="2" cellpadding="5" style="margin-top: 10px">  
+  
+<!--   <h:selectOneMenu>
+        <f:selectItem itemValue="KK" itemLabel="Kredi Kartı" />
+        <f:selectItem itemValue="NK" itemLabel="Nakit" />
+        <f:selectItem itemValue="HV" itemLabel="Havale" />
+    </h:selectOneMenu>-->
+
+<!--    <h:selectOneMenu>
+        <f:selectItem itemValue="" itemLabel="Seçiniz" />
+        <f:selectItems value="#{editBean.allRecordList}" />
+    </h:selectOneMenu>-->
+                            
+                          
+                            
+                            
+                            
+    <h:panelGrid columns="2" cellpadding="5" style="margin-top: 10px">  
      <h:commandButton action="#{MakaleBean.KAYDET()}" value="Kaydet" />
     
     </h:panelGrid>  <br/>
