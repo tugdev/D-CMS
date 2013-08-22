@@ -7,6 +7,7 @@ package com.Bean;
 import com.kategori.Makale;
 import java.io.Serializable;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -15,6 +16,7 @@ import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 
 
 /**
@@ -29,7 +31,7 @@ public class MakaleBean implements Serializable {
 private EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
          private EntityManager em = emf.createEntityManager();
    private static final long serialVersionUID = 1L;
-    
+ 
     private  List<Makale> makaleler;
     private  List<Makale> makaleler2;
     private Makale makale=new Makale();
@@ -38,6 +40,8 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
     public Makale getMakale() {
         return makale;
     }
+
+
 
     public List<Makale> getMakaleler2() {
         return makaleler2;

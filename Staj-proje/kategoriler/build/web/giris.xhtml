@@ -35,6 +35,12 @@
                    itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
                </h:selectOneMenu> 
         </h:column>
+          <h:column>yayınlanacak tarihi seciniz : </h:column>
+         <h:column>
+                <p:calendar value="#{MakaleBean.makale.tarih}" id="cal" showButtonPanel="true"/>  
+        </h:column>
+         
+         
          
         <h:column>icerik: </h:column>
         <h:column><p:editor value="#{MakaleBean.makale.icerik}" /> </h:column>
