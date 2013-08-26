@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -17,40 +18,25 @@
    
         
         <div id="top">
-            <ui:insert name="top"><h:form id="formm">
+            <ui:insert name="top">
+                <h:form id="formm">
                     <p:toolbar style="font-size: smaller; background-color: lightcoral">
-                        <p:toolbarGroup align="left"  >
-
-                            <p:menubar ><p:submenu label="Makale işlemleri" style="font-size: smaller; background-color: whitesmoke">
-
-                                <p:menuitem value="Makale Kaydet"  ajax="false" action="hosgeldin.xhtml"/>
-<!--                                <p:menuitem value="Makale Listele" action="makaleler.xhtml"
-                                            ajax="false"        />-->
+           <p:toolbarGroup rendered="#{'admin' eq kullaniciManaged.kullanici.rol}"><p:menubar><p:submenu  label="Kullanıcı İşlemleri" style="font-size: smaller; background-color: whitesmoke">
                                 
 
-                                
-
-               
-</p:submenu></p:menubar>
-                        </p:toolbarGroup>
-                        
-                        
-                        <p:toolbarGroup rendered="#{'admin' eq kullaniciManaged.kullanici.rol}"><p:menubar><p:submenu  label="Kullanıcı İşlemleri" style="font-size: smaller; background-color: whitesmoke">
-                                
-<!--                            <p:column rendered="#{'admin' eq kullaniciManaged.kullanici.rol}">
-                                <p:commandLink action="kullanici_ekle" ajax="false" value="Kullanıcı İşlemleri" />
-                                
-                            </p:column> 
-                          
-                                -->
-                      <p:menuitem value="Kullanıcı İşlemleri"  ajax="false" action="kullanici_ekle.xhtml"/>  
-                     <p:menuitem value="Makale Kaydet"  ajax="false" action="hosgeldin.xhtml"/>
-                     
-                     
-                     
+                      <p:menuitem value="Kullanıcı lis-makale lis"  ajax="false" action="kullanici_ekle.xhtml"/>  
+                     <p:menuitem value="Kategori crud"  ajax="false" action="index.xhtml"/>
+                   
                                 </p:submenu>  </p:menubar>    </p:toolbarGroup>        
                         <p:toolbarGroup align="right"><div>
+                              
+<!--                                <h:outputText value="son erişim zamanı #{session.lastAccessedTime}">
+      <f:convertDateTime pattern="yyyy" type="date" />
+</h:outputText> 
+                                -->
                                 <h:outputText value="Hoşgeldiniz,#{kullaniciManaged.kullanici.ad}"/>
+                              
+                                
                                 <div align="center">
                                     <p:commandLink  action="#{kullaniciManaged.cikisButon()}"  value="Çıkış"  ajax="false"  /></div>
                             </div>    </p:toolbarGroup>  </p:toolbar>       
@@ -58,9 +44,7 @@
             </ui:insert>
         </div>
 
-        <div id="right" style="padding: 90px;background-color: #ffffff"  >
-            <ui:insert name="right" ></ui:insert>
-        </div>
+
         <div id="content" class="right_content" style="margin-left:  0px;margin-right: 500px;background-color: #ffffff">
             <ui:insert name="content"></ui:insert>
         </div>

@@ -7,6 +7,7 @@ package com.Bean;
 import com.kategori.Makale;
 import java.io.Serializable;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -15,6 +16,7 @@ import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 
 
 /**
@@ -29,7 +31,7 @@ public class MakaleBean implements Serializable {
 private EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
          private EntityManager em = emf.createEntityManager();
    private static final long serialVersionUID = 1L;
-    
+ 
     private  List<Makale> makaleler;
     private  List<Makale> makaleler2;
     private Makale makale=new Makale();
@@ -38,6 +40,8 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
     public Makale getMakale() {
         return makale;
     }
+
+
 
     public List<Makale> getMakaleler2() {
         return makaleler2;
@@ -62,6 +66,8 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
 	makaleler=em.createQuery("select i from com.kategori.Makale i").getResultList();
   //    makaleler2=em.createQuery("select i from com.kategori.Makale i where i.yazar=com.Bean.KullaniciManaged.kullanici.ad ").getResultList();
         makaleler2=em.createQuery("select i from com.kategori.Makale i where i.yazar='tugdev'").getResultList();
+     
+      
     //    kullaniciManaged.kullanici.ad
 	//ust tarafta olusturdugum kisiler adlı liste bilgiler kaydettik.select * from tugba where ad="tugba"
 	em.close();
@@ -89,22 +95,27 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
             // sürekli olarak EntityManagerFactory ve EntityManager ürettiğimiz için
             // perpormans sorunlarıyla karşılaşabilirz.Faces-config de	ContextListener tanımlayarak
             // performansımızı arttırabiliriz.
+            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
             EntityManager em = emf.createEntityManager();
-           
+            
+          
+         
             em.getTransaction().begin();
             em.persist(this.makale);
+           
             em.getTransaction().commit();
             em.close();
             emf.close();
             System.out.println("Kaydedildi...");
-return "makaleler.xhtml?faces-redirect=true";
+        return "giris.xhtml?faces-redirect=true";
 
 
 	
 }
 	public String SIL(){ //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon
- 
+            
+            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
             EntityManager em = emf.createEntityManager();
             makale = em.find(makale.getClass(), makale.getId()); 
@@ -117,7 +128,7 @@ return "makaleler.xhtml?faces-redirect=true";
             emf.close();
             System.out.println("Silindi...");
 
-            return "index";
+            return "giris.xhtml?faces-redirect=true";
 }
 	public String GUNCELLE(){ //veritabanımıza update işlemlerinin gerçekleştirildiği fonksiyon
             if(makale.getId()>0){

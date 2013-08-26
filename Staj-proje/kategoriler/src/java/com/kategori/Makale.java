@@ -5,12 +5,14 @@
 package com.kategori;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -32,9 +34,38 @@ public class Makale implements Serializable {
     
     @Column(name="icerik")
     private String icerik;
+   
+    @Column(name="kategori")
+    private String kategori;
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+    
+//    @Column(name="tarih")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date tarih;
+
+    public Date getTarih() {
+        return tarih;
+    }
+
+    public void setTarih(Date tarih) {
+        this.tarih = tarih;
+    }
+  
+    
+   
+    
     public Long getId() {
         return id;
     }
+
+   
 
     public String getBaslik() {
         return baslik;

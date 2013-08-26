@@ -29,17 +29,25 @@
         <h:column><h:inputText value="#{MakaleBean.makale.yazar}" /> </h:column>
         
          <h:column>Kategori seciniz : </h:column>
+         
          <h:column>
-<!--                <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">-->
              <h:selectOneMenu value="#{MakaleBean.makale.kategori}">
                 <f:selectItems value="#{editBean.allRecordList}" var="items"
                    itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
                </h:selectOneMenu> 
-        </h:column>
-          <h:column>yayınlanacak tarihi seciniz : </h:column>
+         </h:column>
+
+<!-- <h:column>
+                <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
+                <f:selectItems value="#{editBean.allRecordList}" var="items"
+                   itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
+               </h:selectOneMenu> 
+         </h:column>-->
+         
+         <h:column>yayınlanacak tarihi seciniz : </h:column>
          <h:column>
                 <p:calendar value="#{MakaleBean.makale.tarih}" id="cal" showButtonPanel="true"/>  
-        </h:column>
+         </h:column>
          
          
          
