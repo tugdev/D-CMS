@@ -22,6 +22,7 @@ public class Kullanici implements Serializable {
     private String sifre;
     private String rol;
     private Integer akpa;
+    public static final String AUTH_KEY = "ad";
 
     public Integer getAkpa() {
         return akpa;
@@ -31,7 +32,7 @@ public class Kullanici implements Serializable {
         this.akpa = akpa;
     }
     
-    public static final String AUTH_KEY = "ad";
+    
     public String getAd() {
         return ad;
     }

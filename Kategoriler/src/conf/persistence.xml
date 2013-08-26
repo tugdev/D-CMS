@@ -5,6 +5,8 @@
     <non-jta-data-source/>
     <class>com.kategori.Kategoriler</class>
     <class>com.kategori.Kullanici</class>
+    <class>com.kategori.Dialog</class>
+    <class>com.kategori.Makale</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.username" value="root"/>

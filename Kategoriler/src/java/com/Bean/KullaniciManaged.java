@@ -37,16 +37,7 @@ public class KullaniciManaged implements PhaseListener {
    private Kullanici sil;
    private String ad;
    private String sifre;
-   private static List<Kullanici> liste=new ArrayList<Kullanici>();
 
-    public static List<Kullanici> getListe() {
-        return liste;
-    }
-
-    public static void setListe(List<Kullanici> liste) {
-        KullaniciManaged.liste = liste;
-    }
-   
     public Kullanici getEkleKullanici() {
         return ekleKullanici;
     }
@@ -115,7 +106,7 @@ public class KullaniciManaged implements PhaseListener {
         em.getTransaction().begin();
         kullanicilar = (List<Kullanici>) em.createQuery("select i from com.kategori.Kullanici i").getResultList();
 
-if ("".equals(kullanici.getAd()) || ("".equals(kullanici.getSifre()))|| "".equals(kullanici.getRol())) {
+       if ("".equals(kullanici.getAd()) || ("".equals(kullanici.getSifre()))|| "".equals(kullanici.getRol())) {
     
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Bilgilendirme:Lütfen İlgili Tüm Boşlukları Doldurunuz."));
             ekleKullanici = new Kullanici();
@@ -137,11 +128,8 @@ if ("".equals(kullanici.getAd()) || ("".equals(kullanici.getSifre()))|| "".equal
             }
 
             System.out.println("Digest(in hex format):: " + sb.toString());
-            boolean a=k.getAd().equals(kullanici.getAd());
-            boolean b=k.getSifre().equals(sb.toString());
-            boolean c=k.getAkpa().equals(0);
             
-            if (a && b && c) {
+             if (k.getAd().equals(kullanici.getAd()) && k.getSifre().equals(sb.toString()) && k.getAkpa().equals(0)) {
                     
                 kullanici.setId(k.getId());
                 kullanici.setRol(k.getRol());
@@ -177,7 +165,6 @@ if ("".equals(kullanici.getAd()) || ("".equals(kullanici.getSifre()))|| "".equal
         } else {
             em = emf.createEntityManager();
             em.getTransaction().begin();
-            
             bak = 0;
             kullanicilar = (List<Kullanici>) em.createQuery("select i from com.kategori.Kullanici i").getResultList();
             for (Kullanici l : kullanicilar) {
@@ -201,7 +188,6 @@ if ("".equals(kullanici.getAd()) || ("".equals(kullanici.getSifre()))|| "".equal
                 System.out.println("Digest(in hex format):: " + sb.toString());
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Yeni Kullanici Oluşturulmuştur ."));
                 ekleKullanici.setSifre(sb.toString());
-                ekleKullanici.setAkpa(0);
                 em.persist(this.ekleKullanici);
  kullanicilar = (List<Kullanici>) em.createQuery("select i from com.kategori.Kullanici i").getResultList();
             }
@@ -337,13 +323,13 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
    if(isIsSessionOpen()==false){
        
 
-        if ((page.lastIndexOf("giris.xhtml") > -1)||page.lastIndexOf("index.xhtml")>-1||(page.lastIndexOf("Duzenle.xhtml") > -1)||page.lastIndexOf("EditComplete.xhtml")>-1||page.lastIndexOf("Sil.xhtml")>-1) {
+        if ((page.lastIndexOf("hosgeldin.xhtml") > -1)||(page.lastIndexOf("kullanici_ekle.xhtml") > -1)||(page.lastIndexOf("makaleler.xhtml") > -1)||(page.lastIndexOf("makaleDetailDialog.xhtml")>-1)||(page.lastIndexOf("index.xhtml")>-1)||(page.lastIndexOf("Duzenle.xhtml") > -1)||(page.lastIndexOf("EditComplete.xhtml")>-1)||(page.lastIndexOf("Sil.xhtml")>-1)) {
             
             KullaniciManaged.setIsSessionOpen(checkValidUser());
             if (isIsSessionOpen() == false) {
                  HttpSession session = (HttpSession) cont.getExternalContext().getSession(false);
                 NavigationHandler nav = cont.getApplication().getNavigationHandler();
-                nav.handleNavigation(cont, null, "login");
+                nav.handleNavigation(cont, null, "ilk");
             
             }
    
@@ -361,8 +347,8 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
     public PhaseId getPhaseId() {
        return PhaseId.RESTORE_VIEW;
     }
-    
-      @SuppressWarnings("unchecked")
+   
+@SuppressWarnings("unchecked")
 	public KullaniciManaged()  {
 //burada "CRUDPU" bir önceki yazıda persistence-unit e verdiğimiz ad. 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
@@ -400,3 +386,4 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
 }
     
 }
+

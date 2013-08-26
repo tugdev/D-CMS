@@ -23,21 +23,32 @@
 
                             <p:menubar ><p:submenu label="Makale işlemleri" style="font-size: smaller; background-color: whitesmoke">
 
-                                <p:menuitem value="Makale Kaydet"  action="firmaKaydet"  ajax="false"/>
-                                <p:menuitem value="Makale Listele" action="#{firmaManaged.firmaListele()}"
-                                            ajax="false"        />
+                                <p:menuitem value="Makale Kaydet"  ajax="false" action="hosgeldin.xhtml"/>
+<!--                                <p:menuitem value="Makale Listele" action="makaleler.xhtml"
+                                            ajax="false"        />-->
+                                
 
-                                <p:menuitem value="Faturaları Listele" action="#{faturaManaged.faturaListele()}" actionListener="faturaListele"
-                                            ajax="false"    />
+                                
 
                
 </p:submenu></p:menubar>
                         </p:toolbarGroup>
-                        <p:toolbarGroup><p:menubar><p:submenu label="Kullanıcı İşlemleri" style="font-size: smaller; background-color: whitesmoke">
-                                <p:menuitem >
-                            <p:column rendered="#{'admin' eq kullaniciManaged.kullanici.rol}">
-                                <p:commandLink action="kullaniciEkle" ajax="false" value="Kullanıcı İşlemleri" />
-                            </p:column>  </p:menuitem>  </p:submenu>  </p:menubar>    </p:toolbarGroup>        
+                        
+                        
+                        <p:toolbarGroup rendered="#{'admin' eq kullaniciManaged.kullanici.rol}"><p:menubar><p:submenu  label="Kullanıcı İşlemleri" style="font-size: smaller; background-color: whitesmoke">
+                                
+<!--                            <p:column rendered="#{'admin' eq kullaniciManaged.kullanici.rol}">
+                                <p:commandLink action="kullanici_ekle" ajax="false" value="Kullanıcı İşlemleri" />
+                                
+                            </p:column> 
+                          
+                                -->
+                      <p:menuitem value="Kullanıcı İşlemleri"  ajax="false" action="kullanici_ekle.xhtml"/>  
+                     <p:menuitem value="Makale Kaydet"  ajax="false" action="hosgeldin.xhtml"/>
+                     
+                     
+                     
+                                </p:submenu>  </p:menubar>    </p:toolbarGroup>        
                         <p:toolbarGroup align="right"><div>
                                 <h:outputText value="Hoşgeldiniz,#{kullaniciManaged.kullanici.ad}"/>
                                 <div align="center">

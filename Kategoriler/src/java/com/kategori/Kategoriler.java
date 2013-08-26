@@ -1,14 +1,17 @@
 package com.kategori;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,8 +37,21 @@ public class Kategoriler implements Serializable {
     private String kategoriAdi;
     @Column(name = "kat_ust_id")
     private Integer katUstId;
-    @Column(name = "aktifpasif")
-    private Integer aktifPasif;
+  
+    
+    @OneToMany(mappedBy = "kategoriObje")
+    private List<Makale> makaleler;
+
+    public List<Makale> getMakaleler() {
+        return makaleler;
+    }
+
+    public void setMakaleler(List<Makale> makaleler) {
+        this.makaleler = makaleler;
+    }
+
+    
+    
     
     public Kategoriler() {
     }
@@ -82,16 +98,6 @@ public class Kategoriler implements Serializable {
         this.katUstId = katUstId;
     }
 
-    public Integer getAktifPasif() {
-        return aktifPasif;
-    }
-
-    public void setAktifPasif(Integer aktifPasif) {
-        this.aktifPasif = aktifPasif;
-    }
-    
-    
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -115,6 +121,10 @@ public class Kategoriler implements Serializable {
     @Override
     public String toString() {
         return "com.kategori.Kategoriler[kategoriId=" + kategoriId + "]";
+    }
+
+    public Object getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

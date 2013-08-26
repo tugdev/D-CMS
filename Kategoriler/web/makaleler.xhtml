@@ -1,28 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+          xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+   
+   <h:head>
+        <title>makaleler</title>
     </h:head>
     <h:body>
-        <ui:composition template="/Template.xhtml">
-
-            <ui:define name="content" >
-        <h:form >
-    <p:panel  style="width:70%; margin-top: 25px; margin-left: 295px; font-size: smaller;">
-        <h:outputText value="#{kullaniciManaged.kullanici.ad} Kullanıcının Makaleleri" style="font-size: 170%; margin-top: 25px; margin-left: 200px;font-style: italic;color: burlywood "/>
-        <!--<h:outputLink style=" margin-top: 25px; margin-left: 255px; ">   Makaleler  </h:outputLink>--> 
-        <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler2}"
+ 
+        <h:form>
+  
+            <p:growl id="messages" >  
+  
+ 
+                </p:growl>
+</h:form>
+        
+        
+         <h:form > 
+             
+             <p:panel header="Makaleler" style="width:90%; font-size: smaller"  >
+        
+           <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
 			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15">
-			
+			rowsPerPageTemplate="5,10,15" style="font-size: smaller">
+			<p:column style="width:3%">
+				<f:facet name="header">
+					<h:outputText value="id" />
+				</f:facet>
+
+                            <h:outputText value="#{makale.id}" />
+			</p:column>
                 
-                       <p:column style="width:15%">
+                <p:column style="width:15%">
 				<f:facet name="header">
 					<h:outputText value="Başlık" />
 				</f:facet>
@@ -50,7 +65,7 @@
 						value="#{makale}" />
 				</p:commandButton>
 			</p:column>
-            <p:column style="width:3%">
+                <p:column style="width:3%">
                     <p:commandButton id="selectButton" value="Sil"  action="#{MakaleBean.SIL()}" icon="ui-icon-trash" title="Sil">  
                         <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
             </p:commandButton> 
@@ -65,22 +80,15 @@
 						value="#{makale}" />
 				</p:commandButton>
 			</p:column>
-            <p:column style="width:3%">
-				<p:commandButton value="Yayınla" icon="ui-icon-pencil"
-					onclick="makaleDetailDialogWidget.show();"
-					update=":makaleDetailDialogForm">
-                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
-						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
-               		</p:dataTable>
-       
-        </p:panel>
-    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
-                       </h:form>
+               
+                  
+		</p:dataTable>
+           
+           <br></br>         <h:outputLink value="hosgeldin.xhtml">Hoşgeldin</h:outputLink>
+            </p:panel>
+            </h:form>
 		<ui:include src="makaleDetailDialog.xhtml" />
-        
-        </ui:define></ui:composition> 
+                
     </h:body>
 </html>
 
