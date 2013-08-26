@@ -9,7 +9,7 @@
 
     <f:view contentType="text/html" >
         <h:head>
-            <title>Ek Notlar</title>
+            <title>panel1</title>
         </h:head>
         <h:body>
             <ui:composition template="/Template.xhtml">
@@ -27,40 +27,45 @@
         <h:column><h:inputText value="#{MakaleBean.makale.baslik}" /> </h:column>
  	<h:column>yazar: </h:column>
         <h:column><h:inputText value="#{MakaleBean.makale.yazar}" /> </h:column>
+        
+         <h:column>Kategori seciniz : </h:column>
+         
+         <h:column>
+             <h:selectOneMenu value="#{MakaleBean.makale.kategori}">
+                <f:selectItems value="#{editBean.allRecordList}" var="items"
+                   itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
+               </h:selectOneMenu> 
+         </h:column>
+
+<!-- <h:column>
+                <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
+                <f:selectItems value="#{editBean.allRecordList}" var="items"
+                   itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
+               </h:selectOneMenu> 
+         </h:column>-->
+         
+         <h:column>yayınlanacak tarihi seciniz : </h:column>
+         <h:column>
+                <p:calendar value="#{MakaleBean.makale.tarih}" id="cal" showButtonPanel="true"/>  
+         </h:column>
+         
+         
+         
         <h:column>icerik: </h:column>
         <h:column><p:editor value="#{MakaleBean.makale.icerik}" /> </h:column>
-      </h:panelGrid>
        
+ 	</h:panelGrid>
                        
-<!--                       <p:calendar value="#{MakaleBean.makale.tarih}" id="cal" showButtonPanel="true"/>  
-    
-    -->
-    
-    
-    
                        
-                         <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
+      <!--kategoriler sectbox-->                 
+<!--        <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
         <f:selectItems value="#{editBean.allRecordList}" var="items"
             itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
-        </h:selectOneMenu>  
+        </h:selectOneMenu> 
+                       -->
+                       
  </p:panel>
-  
-<!--   <h:selectOneMenu>
-        <f:selectItem itemValue="KK" itemLabel="Kredi Kartı" />
-        <f:selectItem itemValue="NK" itemLabel="Nakit" />
-        <f:selectItem itemValue="HV" itemLabel="Havale" />
-    </h:selectOneMenu>-->
-
-<!--    <h:selectOneMenu>
-        <f:selectItem itemValue="" itemLabel="Seçiniz" />
-        <f:selectItems value="#{editBean.allRecordList}" />
-    </h:selectOneMenu>-->
-                            
-                          
-                            
-                            
-                            
-    <h:panelGrid columns="2" cellpadding="5" style="margin-top: 10px">  
+                                  <h:panelGrid columns="2" cellpadding="5" style="margin-top: 10px">  
      <h:commandButton action="#{MakaleBean.KAYDET()}" value="Kaydet" />
     
     </h:panelGrid>  <br/>
@@ -109,12 +114,28 @@
 						value="#{makale}" />
 				</p:commandButton>
 			</p:column>
+<!--            
             <p:column style="width:30%">
                     <p:commandButton id="selectButton" value="Sil"  action="#{MakaleBean.SIL()}" icon="ui-icon-trash" title="Sil">  
                         <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
-            </p:commandButton> 
-			</p:column>
-               
+                      </p:commandButton> 
+			</p:column>-->
+    
+            <p:column id="msg" style="width:30%">
+                    <p:commandButton value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
+                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
+                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
+                            
+                            
+
+                            <p:commandButton id="selectButton" value="yes"  action="#{MakaleBean.SIL()}" update="msg makalelerTable" oncomplete="cd.hide()">  
+                        <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
+                      </p:commandButton> 
+                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
+                        </p:confirmDialog>
+                     
+                      </p:commandButton> 
+			</p:column>           
                
                 <p:column style="width:20%">
 				<p:commandButton value="Düzenle" icon="ui-icon-pencil"

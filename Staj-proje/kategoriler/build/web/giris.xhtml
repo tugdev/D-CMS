@@ -30,8 +30,9 @@
         
          <h:column>Kategori seciniz : </h:column>
          <h:column>
-                <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
-               <f:selectItems value="#{editBean.allRecordList}" var="items"
+<!--                <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">-->
+             <h:selectOneMenu value="#{MakaleBean.makale.kategori}">
+                <f:selectItems value="#{editBean.allRecordList}" var="items"
                    itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
                </h:selectOneMenu> 
         </h:column>

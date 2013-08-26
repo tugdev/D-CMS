@@ -66,6 +66,8 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
 	makaleler=em.createQuery("select i from com.kategori.Makale i").getResultList();
   //    makaleler2=em.createQuery("select i from com.kategori.Makale i where i.yazar=com.Bean.KullaniciManaged.kullanici.ad ").getResultList();
         makaleler2=em.createQuery("select i from com.kategori.Makale i where i.yazar='tugdev'").getResultList();
+     
+      
     //    kullaniciManaged.kullanici.ad
 	//ust tarafta olusturdugum kisiler adlı liste bilgiler kaydettik.select * from tugba where ad="tugba"
 	em.close();

@@ -34,6 +34,17 @@ public class Makale implements Serializable {
     
     @Column(name="icerik")
     private String icerik;
+   
+    @Column(name="kategori")
+    private String kategori;
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
     
 //    @Column(name="tarih")
     @Temporal(javax.persistence.TemporalType.DATE)
