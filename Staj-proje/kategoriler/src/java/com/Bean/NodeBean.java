@@ -118,6 +118,8 @@ public class NodeBean {
         }
         return araListe;
     }
+    
+    
     public static List<Kategoriler> getListe() {
         return liste;
     }

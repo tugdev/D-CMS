@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -14,32 +14,42 @@
     </h:head>
 
     <h:body>
-        
-   
-        
+
+
+
         <div id="top">
             <ui:insert name="top">
                 <h:form id="formm">
                     <p:toolbar style="font-size: smaller; background-color: lightcoral">
            <p:toolbarGroup rendered="#{'admin' eq kullaniciManaged.kullanici.rol}"><p:menubar><p:submenu  label="Kullanıcı İşlemleri" style="font-size: smaller; background-color: whitesmoke">
-                                
 
-                      <p:menuitem value="Kullanıcı lis-makale lis"  ajax="false" action="kullanici_ekle.xhtml"/>  
+
+                      <p:menuitem value="Kullanıcı lis-makale lis"  ajax="false" action="kullanici_ekle.xhtml"/>
                      <p:menuitem value="Kategori crud"  ajax="false" action="index.xhtml"/>
-                   
-                                </p:submenu>  </p:menubar>    </p:toolbarGroup>        
+
+                                </p:submenu>  </p:menubar>    </p:toolbarGroup>
                         <p:toolbarGroup align="right"><div>
-                              
+
 <!--                                <h:outputText value="son erişim zamanı #{session.lastAccessedTime}">
       <f:convertDateTime pattern="yyyy" type="date" />
-</h:outputText> 
+</h:outputText>
                                 -->
-                                <h:outputText value="Hoşgeldiniz,#{kullaniciManaged.kullanici.ad}"/>
-                              
+                                <div align="center">
                                 
+                                <h:outputText value="#{session.lastAccessedTime}" >
+      <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+</h:outputText>
+</div>
+                               
+
+                                <h:outputText value="Hoşgeldiniz,#{kullaniciManaged.kullanici.ad}"/>
+
+
                                 <div align="center">
                                     <p:commandLink  action="#{kullaniciManaged.cikisButon()}"  value="Çıkış"  ajax="false"  /></div>
-                            </div>    </p:toolbarGroup>  </p:toolbar>       
+                            
+                            </div>
+                        </p:toolbarGroup>  </p:toolbar>
                 </h:form>
             </ui:insert>
         </div>
@@ -51,7 +61,7 @@
 
 
         <div id="bottom" style="background-color: #ffffff;font-size: medium;size: 100px;width: 100px;height: 100px" >
-            <ui:insert name="bottom" > 
+            <ui:insert name="bottom" >
 
             </ui:insert>
         </div>

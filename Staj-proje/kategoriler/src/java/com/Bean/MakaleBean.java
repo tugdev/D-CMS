@@ -150,7 +150,7 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
        public void listele(){
             em = emf.createEntityManager();
              em.getTransaction().begin();
-             liste=(List<Makale> ) em.createQuery("select i from com.kategori.Makale i").getResultList();
+             liste=(List<Makale> ) em.createQuery("select i from com.kategori.Makale i where i.kategori=10").getResultList();
              em.close();
 
          

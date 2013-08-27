@@ -16,147 +16,124 @@
 
             <ui:define name="content" >
             <h:form>
-                <table border="0">
+                <table border="1">
                     <tr>
                         <td align="left">
-                   <p:panel  header="Makale Ekle" style="width:96%; margin-left: 10px; font-size: smaller; margin-top: 15px;"  >
+                            
+                            
+<p:panel  header="Kategori Ağacımız" style="width:70%; margin-left: 10px; margin-right: 120px; font-size: smaller; margin-top: 15px;"  >
                  
-                 <h:panelGrid columns="2"  style="font-size: smaller">
- 	<f:facet name="header"></f:facet>
- 	<h:column>baslik:</h:column>
-        <h:column><h:inputText value="#{MakaleBean.makale.baslik}" /> </h:column>
- 	<h:column>yazar: </h:column>
-        <h:column><h:inputText value="#{MakaleBean.makale.yazar}" /> </h:column>
-        
-         <h:column>Kategori seciniz : </h:column>
-         
-         <h:column>
-             <h:selectOneMenu value="#{MakaleBean.makale.kategori}">
-                <f:selectItems value="#{editBean.allRecordList}" var="items"
-                   itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
-               </h:selectOneMenu> 
-         </h:column>
-
-<!-- <h:column>
-                <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
-                <f:selectItems value="#{editBean.allRecordList}" var="items"
-                   itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
-               </h:selectOneMenu> 
-         </h:column>-->
-         
-         <h:column>yayınlanacak tarihi seciniz : </h:column>
-         <h:column>
-                <p:calendar value="#{MakaleBean.makale.tarih}" id="cal" showButtonPanel="true"/>  
-         </h:column>
-         
-         
-         
-        <h:column>icerik: </h:column>
-        <h:column><p:editor value="#{MakaleBean.makale.icerik}" /> </h:column>
-       
- 	</h:panelGrid>
-                       
-                       
-      <!--kategoriler sectbox-->                 
-<!--        <h:selectOneMenu value="#{editBean.kategoriObje.katUstId}">
-        <f:selectItems value="#{editBean.allRecordList}" var="items"
-            itemLabel="#{items.kategoriAdi}" itemValue="#{items.kategoriId}"/>
-        </h:selectOneMenu> 
-                       -->
-                       
- </p:panel>
-                                  <h:panelGrid columns="2" cellpadding="5" style="margin-top: 10px">  
-     <h:commandButton action="#{MakaleBean.KAYDET()}" value="Kaydet" />
+          <h:panelGrid columns="2" style="font-size: smaller"> 
+      
+ <h:column> kategoriler </h:column>
+        <h:column>
+            <p:tree value="#{nodeBean.root}" var="node" dynamic="true"
+                        selectionMode="single" selection="#{nodeBean.selectedNode}">
+                    <p:treeNode>
+                        <h:outputText value="#{node}"/>
+                    </p:treeNode>
+                </p:tree>
+<!--            <h:panelGrid columns="2">-->
+<!--                    <h:outputLabel value="Alt kategori ismi*:"/>-->
+          </h:column> 
+  
+ 
+  </h:panelGrid>
     
-    </h:panelGrid>  <br/>
+    
+               
+ </p:panel>
+                                  <br/>
+                 
+  <br/><br/><br/>
+                </td>
+                        <td >
+
+ 
+   <p:panel  header="Seçeceğiniz Kategori altındaki Makalelerimiz" style="width:70%; margin-left: 30px; margin-right: 250px; margin-top: 15px;margin-bottom: 15px;  font-size: smaller"  >
+     
+    <h:form>
+      
+        <p:dataTable  id="makalelerTable" var="makale" value="#{MakaleBean.makaleler}" widgetVar="makaleWidget" 
+                          emptyMessage="Bu Kritelere Uygun Sonuc Yoktur."  style="font-size: smaller" 
+                         >  
+  
+        
+                 
+            <p:column sortBy="#{makale.kategori}" headerText="kategori id" filterBy="#{makale.kategori}"
+                          footerText=""  
+                filterMatchMode="contains" >  
+                  #{makale.kategori}   
+        </p:column>  
+  
+          
+                <p:column headerText="makale ad">  
+            #{makale.baslik}  
+        </p:column>
+            <p:column headerText="makale yazar">  
+            #{makale.yazar}  
+        </p:column>
+       <p:column headerText="oku">  
+           <p:commandButton value="Oku" icon="ui-icon-bullet"
+					onclick="makaleDetailDialogWidget.show();"
+					update=":makaleDetailDialogForm">
+                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
+						value="#{makale}" />
+				</p:commandButton>  
+        </p:column>
+       
+                     </p:dataTable>
+    </h:form> 
+       
+        </p:panel>
+    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
+
+
+            </td> 
+        
+           </tr> 
+                    
+                    <tr>
+                        <td align="left">
+                            
+                            
+<p:panel  header="Kategorilerimizin numaraları" style="width:70%; margin-left: 10px; font-size: smaller; margin-top: 15px;"  >
+     <h:form>
+      
+         <p:dataTable  id="makalelerTable" var="kategori" value="#{editBean.allRecordList}" widgetVar="firmaWidget" 
+                          emptyMessage="Bu Kritelere Uygun Sonuc Yoktur."  style="font-size: smaller" 
+                         >  
+  
+        
+                 
+             <p:column sortBy="#{kategori.kategoriAdi}" headerText="kategoriAdi" filterBy="#{kategori.kategoriAdi}"
+                          footerText=""  
+                filterMatchMode="contains" >  
+                  #{kategori.kategoriAdi}   
+        </p:column>  
+  
+          
+                <p:column headerText="kategori id"  style="column-width: min-content">  
+            #{kategori.kategoriId}  
+        </p:column>
+       
+       
+                     </p:dataTable>
+    </h:form>                
+             
+ </p:panel>
+                                  <br/>
                  
   <br/><br/><br/>
                 </td>
                         <td>
 
  
-   <p:panel  header="#{kullaniciManaged.kullanici.ad} adlı Kullanıcının Makaleleri" style="width:93%; margin-left: 23px; margin-top: -200px; font-size: smaller"  >
+   <p:panel  header="Kullanım Talimatları"  style="width:70%; margin-left: 10px; font-size: smaller; margin-top: 15px;" >
        
-
- <!--<h:outputText value="#{kullaniciManaged.kullanici.ad} Kullanıcının Makaleleri" style="width:300%; font-size: 170%;font-style: italic;color: burlywood "/>-->
-        <!--<h:outputLink style=" margin-top: 25px; margin-left: 255px; ">   Makaleler  </h:outputLink>--> 
-        <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler2}"
-			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15" style="width: 90%">
-			
-                
-                       <p:column style="width:20%">
-				<f:facet name="header">
-					<h:outputText value="Başlık" />
-				</f:facet>
-
-                            <h:outputText value="#{makale.baslik}" />
-			</p:column>
-                
-
-			<p:column style="width:30%">
-				<f:facet name="header">
-					<h:outputText value="Yazar" />
-				</f:facet>
-
-				<h:outputText value="#{makale.yazar}" />
-			</p:column>
-                
-                     
-                
-                   
-			<p:column style="width:30%">
-				<p:commandButton value="Oku" icon="ui-icon-bullet"
-					onclick="makaleDetailDialogWidget.show();"
-					update=":makaleDetailDialogForm">
-                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
-						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
-<!--            
-            <p:column style="width:30%">
-                    <p:commandButton id="selectButton" value="Sil"  action="#{MakaleBean.SIL()}" icon="ui-icon-trash" title="Sil">  
-                        <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
-                      </p:commandButton> 
-			</p:column>-->
-    
-            <p:column id="msg" style="width:30%">
-                    <p:commandButton value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
-                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
-                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
-                            
-                            
-
-                            <p:commandButton id="selectButton" value="yes"  action="#{MakaleBean.SIL()}" update="msg makalelerTable" oncomplete="cd.hide()">  
-                        <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
-                      </p:commandButton> 
-                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
-                        </p:confirmDialog>
-                     
-                      </p:commandButton> 
-			</p:column>           
-               
-                <p:column style="width:20%">
-				<p:commandButton value="Düzenle" icon="ui-icon-pencil"
-					onclick="makaleDetailDialogWidget.show();"
-					update=":makaleDetailDialogForm">
-                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
-						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
-            <p:column style="width:20%">
-				<p:commandButton value="Yayınla" icon="ui-icon-pencil"
-					onclick="makaleDetailDialogWidget.show();"
-					update=":makaleDetailDialogForm">
-                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
-						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
-               		</p:dataTable>
-       
+Sevgili okuyucumuz sayfamıza hoş geldiniz...
         </p:panel>
-    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
+   
 
 
             </td> 
