@@ -20,50 +20,145 @@
    </p:toolbar>       
         
         
-<h:form >
-    <p:panel header="makaleler" style="width:50%; height: 50%; margin-top: 25px; margin-left: 295px; font-size: smaller;">
-        <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
-			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
+<h:form>
+                <table border="1">
+                    <tr>
+                        <td align="left">
+                            
+                            
+<p:panel  header="Kategori Ağacımız" style="width:70%; margin-left: 10px; margin-right: 120px; font-size: smaller; margin-top: 15px;"  >
+                 
+          <h:panelGrid columns="2" style="font-size: smaller"> 
+      
+ <h:column> kategoriler </h:column>
+        <h:column>
+            <p:tree value="#{nodeBean.root}" var="node" dynamic="true"
+                        selectionMode="single" selection="#{nodeBean.selectedNode}">
+                    <p:treeNode>
+                        <h:outputText value="#{node}"/>
+                    </p:treeNode>
+                </p:tree>
+<!--            <h:panelGrid columns="2">-->
+<!--                    <h:outputLabel value="Alt kategori ismi*:"/>-->
+          </h:column> 
+  
+ 
+  </h:panelGrid>
+    
+    
+               
+ </p:panel>
+                                  <br/>
+                 
+  <br/><br/><br/>
+                </td>
+                        <td >
+
+ 
+   <p:panel  header="Seçeceğiniz Kategori altındaki Makalelerimiz" style="width:70%; margin-left: 30px; margin-right: 250px; margin-top: 15px;margin-bottom: 15px;  font-size: smaller"  >
+     
+    <h:form>
+      
+        <p:dataTable  id="makalelerTable" var="makale" value="#{MakaleBean.makaleler}" widgetVar="makaleWidget" 
+                          emptyMessage="Bu Kritelere Uygun Sonuc Yoktur." paginator="true" rows="5"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15">
-			
-                
-                       <p:column style="width:15%">
-				<f:facet name="header">
-					<h:outputText value="Başlık" />
-				</f:facet>
-
-                            <h:outputText value="#{makale.baslik}" />
-			</p:column>
-                
-
-			<p:column style="width:15%">
-				<f:facet name="header">
-					<h:outputText value="Yazar" />
-				</f:facet>
-
-				<h:outputText value="#{makale.yazar}" />
-			</p:column>
-                
-                     
-                
-                   
-			<p:column style="width:3%">
-				<p:commandButton value="Oku" icon="ui-icon-bullet"
+			rowsPerPageTemplate="5,10,15" style="font-size: smaller" 
+                         >  
+  
+        
+                 
+            <p:column sortBy="#{makale.kategori}" headerText="kategori id" filterBy="#{makale.kategori}"
+                          footerText=""  
+                filterMatchMode="contains" >  
+                  #{makale.kategori}   
+        </p:column>  
+  
+                <p:column headerText="makale başlığı">  
+            #{makale.baslik}  
+        </p:column>
+            <p:column headerText="makale yazarı">  
+            #{makale.yazar}  
+        </p:column>
+            <p:column headerText="makale iceriği">  
+            #{makale.icerik}  
+        </p:column>
+            <p:column headerText="makale yayın tarihi">  
+            #{makale.tarih}  
+        </p:column>
+            
+       <p:column headerText="oku">  
+           <p:commandButton value="Oku" icon="ui-icon-bullet"
 					onclick="makaleDetailDialogWidget.show();"
 					update=":makaleDetailDialogForm">
                                     <f:setPropertyActionListener target="#{MakaleBean.makale}"
 						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
-               		</p:dataTable>
-        <h:outputLink value="makaleler.xhtml">Makaleler</h:outputLink> -
-        <h:outputLink value="hosgeldin.xhtml">Makale Ekle</h:outputLink> 
-        
+				</p:commandButton>  
+        </p:column>
+       
+                     </p:dataTable>
+    </h:form> 
+       
         </p:panel>
     <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
-                       </h:form>
-		<ui:include src="makaleDetailDialog.xhtml" />
+
+
+            </td> 
+        
+           </tr> 
+                    
+                    <tr>
+                        <td align="left">
+                            
+                            
+<p:panel  header="Kategorilerimizin numaraları" style="width:70%; margin-left: 10px; font-size: smaller; margin-top: 15px;"  >
+     <h:form>
+      
+         <p:dataTable  id="makalelerTable" var="kategori" value="#{editBean.allRecordList}" widgetVar="firmaWidget" 
+                          emptyMessage="Bu Kritelere Uygun Sonuc Yoktur." paginator="true" rows="5"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15"  style="font-size: smaller" 
+                         >  
+  
+        
+                 
+             <p:column sortBy="#{kategori.kategoriAdi}" headerText="kategoriAdi" filterBy="#{kategori.kategoriAdi}"
+                          footerText=""  
+                filterMatchMode="contains" >  
+                  #{kategori.kategoriAdi}   
+        </p:column>  
+  
+          
+                <p:column headerText="kategori id"  style="column-width: min-content">  
+            #{kategori.kategoriId}  
+        </p:column>
+       
+       
+                     </p:dataTable>
+    </h:form>                
+             
+ </p:panel>
+                                  <br/>
+                 
+  <br/><br/><br/>
+                </td>
+                        <td>
+
+ 
+   <p:panel  header="Kullanım Talimatları"  style="width:70%; margin-left: 10px; font-size: smaller; margin-top: 15px;" >
+       
+Sevgili okuyucumuz sayfamıza hoş geldiniz...
+        </p:panel>
+   
+
+
+            </td> 
+        
+           </tr> 
+        </table> 
+
+<!--        <p:growl id="messages" showDetail="true"/>  -->
+    </h:form>  
+<ui:include src="makaleDetailDialog.xhtml" />
     </h:body>         
 </html>
 

@@ -20,36 +20,69 @@
         <div id="top">
             <ui:insert name="top">
                 <h:form id="formm">
-                    <p:toolbar style="font-size: smaller; background-color: lightcoral">
-           <p:toolbarGroup rendered="#{'admin' eq kullaniciManaged.kullanici.rol}"><p:menubar><p:submenu  label="Kullanıcı İşlemleri" style="font-size: smaller; background-color: whitesmoke">
+                    
+ <p:toolbar style="font-size: smaller; background-color: #dddddd">
+     
+           <p:toolbarGroup >
+<!--               <p:menubar>
+                   <p:submenu  label="Kullanıcı İşlemleri" style="font-size: smaller; background-color: whitesmoke">
 
 
                       <p:menuitem value="Kullanıcı lis-makale lis"  ajax="false" action="kullanici_ekle.xhtml"/>
                      <p:menuitem value="Kategori crud"  ajax="false" action="index.xhtml"/>
 
-                                </p:submenu>  </p:menubar>    </p:toolbarGroup>
-                        <p:toolbarGroup align="right"><div>
+                 </p:submenu> 
+               </p:menubar>   -->
+ <p:menubar> 
+ <p:submenu label="İşlemler" icon="ui-icon-folder-open">  
+            <p:submenu label="Makale" icon="ui-icon-contact">  
+                <p:menuitem value="Makale Ekle" url="giris.xhtml" icon="ui-icon-document" />  
+                <p:menuitem rendered="#{'admin' eq kullaniciManaged.kullanici.rol}" value="Makale Listele" url="makaleler.xhtml" icon="ui-icon-disk"/>
+                <p:menuitem rendered="#{'admin' eq kullaniciManaged.kullanici.rol}" value="Makale Sil" url="makaleler.xhtml" icon="ui-icon-trash"/>
+            </p:submenu>  
+            <p:separator />  
+            <p:submenu rendered="#{'admin' eq kullaniciManaged.kullanici.rol}" label="Kategori" icon="ui-icon-contact">  
+                <p:menuitem value="Kategori Ekle" url="index.xhtml" icon="ui-icon-document"/>  
+                <p:menuitem value="Kategori Listele" url="Duzenle.xhtml" icon="ui-icon-disk"/>  
+                <p:menuitem value="Kategori Düzenle" url="Duzenle.xhtml" icon="ui-icon-pencil"/>  
+                <p:menuitem value="Kategori Sil" url="Sil.xhtml" icon="ui-icon-trash"/> 
+            </p:submenu> 
+            <p:separator />  
+            <p:submenu rendered="#{'admin' eq kullaniciManaged.kullanici.rol}" label="Kullanici" icon="ui-icon-contact">  
+                <p:menuitem value="Kullanici Ekle" url="kullanici_ekle.xhtml" icon="ui-icon-document"/>  
+                <p:menuitem value="Kullanici Listele" url="kullanici_ekle.xhtml" icon="ui-icon-disk"/>  
+                <p:menuitem value="Kullanici Düzenle" url="kullanici_ekle.xhtml" icon="ui-icon-pencil"/>  
+                <p:menuitem value="Kullanici Sil" url="kullanici_ekle.xhtml" icon="ui-icon-trash" /> 
+            </p:submenu> 
+ </p:submenu>  
+  <p:menuitem value="Anasayfa" url="ilk.xhtml" icon="ui-icon-extlink" /> 
+        
+  
+ </p:menubar>
+           </p:toolbarGroup>
+                        
+         <p:toolbarGroup align="right">
+             <div>
 
-<!--                                <h:outputText value="son erişim zamanı #{session.lastAccessedTime}">
-      <f:convertDateTime pattern="yyyy" type="date" />
-</h:outputText>
-                                -->
-                                <div align="center">
+  <div align="center">
                                 
-                                <h:outputText value="#{session.lastAccessedTime}" >
-      <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-</h:outputText>
+         <h:outputText value="#{session.lastAccessedTime}" >
+                 <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+        </h:outputText>
 </div>
                                
 
-                                <h:outputText value="Hoşgeldiniz,#{kullaniciManaged.kullanici.ad}"/>
-
-
-                                <div align="center">
-                                    <p:commandLink  action="#{kullaniciManaged.cikisButon()}"  value="Çıkış"  ajax="false"  /></div>
+           <h:outputText value="Hoşgeldiniz,#{kullaniciManaged.kullanici.ad}"/>
+           <div align="center">
+               
+                  <p:commandLink  action="#{kullaniciManaged.cikisButon()}"  value="Çıkış"  ajax="false"  />
+            </div>
                             
-                            </div>
-                        </p:toolbarGroup>  </p:toolbar>
+               </div>
+    </p:toolbarGroup>  
+</p:toolbar>
+                
+                
                 </h:form>
             </ui:insert>
         </div>

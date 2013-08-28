@@ -209,7 +209,7 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
     public String cikisButon() {
         kullanici = new Kullanici();
         ekleKullanici = new Kullanici();
- return "login.xhtml?faces-redirect=true";
+ return "ilk.xhtml?faces-redirect=true";
         
     }
 
