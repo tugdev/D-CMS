@@ -321,7 +321,7 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
    if(isIsSessionOpen()==false){
        
 
-        if ((page.lastIndexOf("hosgeldin.xhtml") > -1)||(page.lastIndexOf("kullanici_ekle.xhtml") > -1)||(page.lastIndexOf("makaleler.xhtml") > -1)||(page.lastIndexOf("makaleDetailDialog.xhtml")>-1)||(page.lastIndexOf("index.xhtml")>-1)||(page.lastIndexOf("Duzenle.xhtml") > -1)||(page.lastIndexOf("EditComplete.xhtml")>-1)||(page.lastIndexOf("Sil.xhtml")>-1)) {
+        if ((page.lastIndexOf("giris.xhtml") > -1)||(page.lastIndexOf("kullanici_ekle.xhtml") > -1)||(page.lastIndexOf("makaleler.xhtml") > -1)||(page.lastIndexOf("makaleDetailDialog.xhtml")>-1)||(page.lastIndexOf("index.xhtml")>-1)||(page.lastIndexOf("Duzenle.xhtml") > -1)||(page.lastIndexOf("EditComplete.xhtml")>-1)||(page.lastIndexOf("Sil.xhtml")>-1)||(page.lastIndexOf("talimat.xhtml")>-1)) {
             
             KullaniciManaged.setIsSessionOpen(checkValidUser());
             if (isIsSessionOpen() == false) {
