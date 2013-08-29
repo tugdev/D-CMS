@@ -345,5 +345,40 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
     public PhaseId getPhaseId() {
        return PhaseId.RESTORE_VIEW;
     }
-   
+   @SuppressWarnings("unchecked")
+	public KullaniciManaged()  {
+//burada "CRUDPU" bir önceki yazıda persistence-unit e verdiğimiz ad. 
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
+	// Önce Persistence nesnesinden EntityManaegerFactory oluşturulur.
+	EntityManager em =emf.createEntityManager();
+	// EntityManagerFactory'den EntityManager oluşturulur.
+	kullanicilar=em.createQuery("select i from com.kategori.Kullanici i").getResultList();
+	//ust tarafta olusturdugum kisiler adlı liste bilgiler kaydettik.
+	em.close();
+	emf.close();
+}
+           
+
+           public void aktifpasif() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
+        
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Kullanici user=em.find(kullanici.getClass(), kullanici.getId());
+            if (user.getRol().equalsIgnoreCase("admin")){
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,null, "Bilgilendirme:Admin Aktif Pasif Yapılamaz!"));
+               }
+            else if (user.getAkpa().equals(0)){
+                  user.setAkpa(1);
+                  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,null, "Kullanıcı Pasif Oldu!"));
+             }
+            
+            else if (user.getAkpa().equals(1)){
+                  user.setAkpa(0);
+                  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,null, "Kullanıcı Aktif Oldu!"));
+            }
+            em.getTransaction().commit();
+            em.close();
+            emf.close();
+}
 }

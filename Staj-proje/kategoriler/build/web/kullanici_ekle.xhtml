@@ -7,17 +7,19 @@
    xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:p="http://primefaces.org/ui"> 
 
-    <f:view contentType="text/html" beforePhase="#{kullaniciManaged.listeDoldur()}">
+    <f:view contentType="text/html" >
     <h:head>
         <title>Kullanıcı İşlemleri</title>
     </h:head>
     <h:body>
          
+<ui:composition template="/Template.xhtml">
 
+            <ui:define name="content" >
                 
        <h:form id="form2">  
            
-           <p:tabView   orientation="left"  id="tabVi"  style="border-style: none;background-color: cornflowerblue;">  
+           <p:tabView   orientation="left"  id="tabVi"  style="border-style: none;background-color: #dddddd;">  
                
                <p:tab id="ekle" title="Kullanici Ekle"  >  
         <h:panelGrid columns="2" cellpadding="10" >  
@@ -64,9 +66,9 @@
                       </p:column>
         </h:panelGrid>  
     </p:tab>  
-               <p:tab title="Kullanici Sil" id="sil" >  
+               <p:tab title="Kullanici Listele - Sil" id="sil" >  
                    <h:panelGrid id="ppp" columns="2" cellpadding="10">  
-                       <p:dataTable id="dsil" value="#{kullaniciManaged.kullanicilar}" var="kullanicilar" style="background-color: cornflowerblue">
+                       <p:dataTable id="dsil" value="#{kullaniciManaged.kullanicilar}" var="kullanicilar" style="background-color: #dddddd">
                     <p:column headerText="Kullanici Adı">
                         #{kullanicilar.ad}
                         
@@ -84,13 +86,41 @@
                 </p:dataTable>
         </h:panelGrid>  
     </p:tab>  
+                     <!--/*********************/-->
+             <p:tab title="Kullanici Aktif-Pasif yap" id="dznl" >  
+                   <h:panelGrid id="ppp2" columns="2" cellpadding="10">  
+                      <p:dataTable value="#{kullaniciManaged.kullanicilar}" var="items" >
+                     <p:column>
+                        <f:facet name="header">Kullanıcı Adı:</f:facet>
+                        <h:outputText  value="#{items.ad}"/>
+                    </p:column>
+                    <p:column >
+                      
+                        <f:facet name="header">Kullanıcı rol:</f:facet>
+                        <h:outputText  value="#{items.rol}"/>
+                    </p:column>
+                 <p:column>
+          
+                        <f:facet name="header">Aktif-Pasif</f:facet>
+                        <p:commandButton update="form2" id="selectButton"  action="#{kullaniciManaged.aktifpasif()}" icon="ui-icon-person" title="Pasif" ajax="false">  
+                            <f:setPropertyActionListener value="#{items.id}" target="#{kullaniciManaged.kullanici.id}" />  
+            </p:commandButton> 
+                    </p:column>
+
+
+
+                </p:dataTable>
+
+        </h:panelGrid>  
+    </p:tab>
+               
           </p:tabView>  
                 <p:messages id="messages" closable="true" showDetail="true" autoUpdate="true"  />
                 
-               
+               <!--<p:messages id="messages" showDetail="true" autoUpdate="true"  />-->
              
 </h:form>  
-    
+    </ui:define></ui:composition>  
     </h:body>
 </f:view>
 </html>

@@ -1,73 +1,56 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+          xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:c="http://java.sun.com/jsp/jstl/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:p="http://primefaces.org/ui"> 
+
+    <f:view contentType="text/html" >
     <h:head>
-        <title>makaleler</title>
+        <title>Anasayfa</title>
     </h:head>
     <h:body>
-        
-        
-        
-    <p:toolbar style="font-size: smaller; background-color: lightcoral">  
+            <p:toolbar style="font-size: smaller; background-color: #dddddd">  
     <p:toolbarGroup align="left">  
         <p:button outcome="login" id="basic" value="Login"  icon="ui-icon-extlink" style="font-size: smaller; background-color: whitesmoke"/> 
         <p:button outcome="hesapEkle" value="Hesap Ekle" icon="ui-icon-star" style="font-size: smaller; background-color: whitesmoke"></p:button> 
+        <p:button outcome="ilk" value="Anasayfa"  icon="ui-icon-home" style="font-size: smaller; background-color: whitesmoke"></p:button> 
+        <p:button outcome="talimat" value="DCMS"  icon="ui-icon-home" style="font-size: smaller; background-color: whitesmoke"></p:button> 
     </p:toolbarGroup>  
-   </p:toolbar>       
-        
-        
-<h:form>
-                <table border="1">
-                    <tr>
-                        <td align="left">
-                            
-                            
-<p:panel  header="Kategori Ağacımız" style="width:70%; margin-left: 10px; margin-right: 120px; font-size: smaller; margin-top: 15px;"  >
-                 
-          <h:panelGrid columns="2" style="font-size: smaller"> 
-      
- <h:column> kategoriler </h:column>
-        <h:column>
-            <p:tree value="#{nodeBean.root}" var="node" dynamic="true"
+   </p:toolbar>   
+        <br/><br/>
+       <h:form>  
+           
+       <p:tabView   orientation="left"  id="tabVi"  style="width: 80%; border-style: none;margin-left: 60px; background-color: #dddddd;font-size: smaller">  
+               
+           <p:tab id="ekle" title="Kategoriler ve Alt kategoriler"  >  
+              
+               <p:panel id="panelId" style=" font-size: smaller">
+                   
+                   <p:tree value="#{nodeBean.root}" var="node" dynamic="true"
                         selectionMode="single" selection="#{nodeBean.selectedNode}">
                     <p:treeNode>
                         <h:outputText value="#{node}"/>
                     </p:treeNode>
-                </p:tree>
-<!--            <h:panelGrid columns="2">-->
-<!--                    <h:outputLabel value="Alt kategori ismi*:"/>-->
-          </h:column> 
-  
- 
-  </h:panelGrid>
-    
-    
+                   </p:tree>
+             
+                <h:message for="id"/>
+                
+               </p:panel> 
                
- </p:panel>
-                                  <br/>
-                 
-  <br/><br/><br/>
-                </td>
-                        <td >
-
- 
-   <p:panel  header="Seçeceğiniz Kategori altındaki Makalelerimiz" style="width:70%; margin-left: 30px; margin-right: 250px; margin-top: 15px;margin-bottom: 15px;  font-size: smaller"  >
-     
-    <h:form>
-      
-        <p:dataTable  id="makalelerTable" var="makale" value="#{MakaleBean.makaleler}" widgetVar="makaleWidget" 
+          </p:tab> 
+               <p:tab id="gstr" title="makaleler"  >  
+                   
+                   <p:dataTable  id="makalelerTable" var="makale" value="#{MakaleBean.makaleler}" widgetVar="makaleWidget" 
                           emptyMessage="Bu Kritelere Uygun Sonuc Yoktur." paginator="true" rows="5"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15" style="font-size: smaller" 
-                         >  
+			rowsPerPageTemplate="5,10,15" style="font-size: smaller" >  
   
         
                  
-            <p:column sortBy="#{makale.kategori}" headerText="kategori id" filterBy="#{makale.kategori}"
+            <p:column sortBy="#{makale.kategori}" headerText="Kategori başlıkları" filterBy="#{makale.kategori}"
                           footerText=""  
                 filterMatchMode="contains" >  
                   #{makale.kategori}   
@@ -79,13 +62,8 @@
             <p:column headerText="makale yazarı">  
             #{makale.yazar}  
         </p:column>
-            <p:column headerText="makale iceriği">  
-            #{makale.icerik}  
-        </p:column>
-            <p:column headerText="makale yayın tarihi">  
-            #{makale.tarih}  
-        </p:column>
             
+           
        <p:column headerText="oku">  
            <p:commandButton value="Oku" icon="ui-icon-bullet"
 					onclick="makaleDetailDialogWidget.show();"
@@ -96,69 +74,16 @@
         </p:column>
        
                      </p:dataTable>
-    </h:form> 
-       
-        </p:panel>
-    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
+               </p:tab>
 
-
-            </td> 
-        
-           </tr> 
-                    
-                    <tr>
-                        <td align="left">
-                            
-                            
-<p:panel  header="Kategorilerimizin numaraları" style="width:70%; margin-left: 10px; font-size: smaller; margin-top: 15px;"  >
-     <h:form>
-      
-         <p:dataTable  id="makalelerTable" var="kategori" value="#{editBean.allRecordList}" widgetVar="firmaWidget" 
-                          emptyMessage="Bu Kritelere Uygun Sonuc Yoktur." paginator="true" rows="5"
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15"  style="font-size: smaller" 
-                         >  
-  
-        
-                 
-             <p:column sortBy="#{kategori.kategoriAdi}" headerText="kategoriAdi" filterBy="#{kategori.kategoriAdi}"
-                          footerText=""  
-                filterMatchMode="contains" >  
-                  #{kategori.kategoriAdi}   
-        </p:column>  
-  
+           
           
-                <p:column headerText="kategori id"  style="column-width: min-content">  
-            #{kategori.kategoriId}  
-        </p:column>
-       
-       
-                     </p:dataTable>
-    </h:form>                
-             
- </p:panel>
-                                  <br/>
-                 
-  <br/><br/><br/>
-                </td>
-                        <td>
-
- 
-   <p:panel  header="Kullanım Talimatları"  style="width:70%; margin-left: 10px; font-size: smaller; margin-top: 15px;" >
-       
-Sevgili okuyucumuz sayfamıza hoş geldiniz...
-        </p:panel>
-   
+           
+          </p:tabView>  
 
 
-            </td> 
-        
-           </tr> 
-        </table> 
-
-<!--        <p:growl id="messages" showDetail="true"/>  -->
-    </h:form>  
-<ui:include src="makaleDetailDialog.xhtml" />
-    </h:body>         
+</h:form>  
+     <ui:include src="makaleDetailDialog.xhtml" />
+    </h:body>
+</f:view>
 </html>
-

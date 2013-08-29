@@ -11,84 +11,88 @@
         <title>makaleler</title>
     </h:head>
     <h:body>
- 
-        <h:form>
-  
-            <p:growl id="messages" >  
-  
- 
-                </p:growl>
-</h:form>
-        
-        
-         <h:form > 
+  <ui:composition template="/Template.xhtml">
+
+            <ui:define name="content" >
+         <h:form> 
              
-             <p:panel header="Makaleler" style="width:90%; font-size: smaller"  >
-        
-           <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
-			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="10"
+             <p:panel  header="Makalelerimiz" style="width:70%; margin-left: 200px; margin-right: 250px; margin-top: 15px;margin-bottom: 15px;  font-size: smaller"  >
+     
+    <h:form>
+      
+        <p:dataTable  id="makalelerTable" var="makale" value="#{MakaleBean.makaleler}" widgetVar="makaleWidget" 
+                          emptyMessage="Bu Kritelere Uygun Sonuc Yoktur." paginator="true" rows="5"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15" style="font-size: smaller">
-			<p:column style="width:3%">
-				<f:facet name="header">
-					<h:outputText value="id" />
-				</f:facet>
-
-                            <h:outputText value="#{makale.id}" />
-			</p:column>
-                
-                <p:column style="width:15%">
-				<f:facet name="header">
-					<h:outputText value="Başlık" />
-				</f:facet>
-
-                            <h:outputText value="#{makale.baslik}" />
-			</p:column>
-                
-
-			<p:column style="width:15%">
-				<f:facet name="header">
-					<h:outputText value="Yazar" />
-				</f:facet>
-
-				<h:outputText value="#{makale.yazar}" />
-			</p:column>
-                
-                     
-                
-                   
-			<p:column style="width:3%">
-				<p:commandButton value="Oku" icon="ui-icon-bullet"
+			rowsPerPageTemplate="5,10,15" style="font-size: smaller" 
+                         >  
+  
+        
+                 
+            <p:column sortBy="#{makale.kategori}" headerText="Kategori Adı" filterBy="#{makale.kategori}"
+                          footerText=""  
+                filterMatchMode="contains" >  
+                  #{makale.kategori}   
+        </p:column>  
+  
+                <p:column headerText="makale başlığı">  
+            #{makale.baslik}  
+        </p:column>
+            <p:column headerText="makale yazarı">  
+            #{makale.yazar}  
+        </p:column>
+            <p:column headerText="makale Id No">  
+            #{makale.id}  
+        </p:column>
+            <p:column headerText="makale yayın tarihi">  
+            #{makale.tarih}  
+        </p:column>
+            
+       <p:column headerText="oku">  
+           <p:commandButton value="Oku" icon="ui-icon-bullet"
 					onclick="makaleDetailDialogWidget.show();"
 					update=":makaleDetailDialogForm">
                                     <f:setPropertyActionListener target="#{MakaleBean.makale}"
 						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
-                <p:column style="width:3%">
-                    <p:commandButton id="selectButton" value="Sil"  action="#{MakaleBean.SIL()}" icon="ui-icon-trash" title="Sil">  
+				</p:commandButton>  
+        </p:column>
+<!--       <p:column id="msg" style="width:30%" headerText="Sil">
+                    <p:commandButton  value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
+                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
+                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
+                            
+                            <p:commandButton id="selectButton" value="yes"  action="#{MakaleBean.SIL()}" update="msg makalelerTable" oncomplete="cd.hide()">  
                         <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
-            </p:commandButton> 
-			</p:column>
-               
-               
-                <p:column style="width:3%">
-				<p:commandButton value="Düzenle" icon="ui-icon-pencil"
-					onclick="makaleDetailDialogWidget.show();"
-					update=":makaleDetailDialogForm">
-                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
-						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
-               
-                  
-		</p:dataTable>
-           <h:outputLink value="index.xhtml">anasayfa</h:outputLink>
-           <br></br>         <h:outputLink value="hosgeldin.xhtml">Hoşgeldin</h:outputLink>
-            </p:panel>
+                      </p:commandButton> 
+                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
+                        </p:confirmDialog>
+                     
+                      </p:commandButton> 
+			</p:column> -->
+                     </p:dataTable>
+         <p:column id="msg" style="width:30%" headerText="Sil">
+                        <h:column>Silmek İstediğiniz Makalenin Id No:</h:column>
+                        <h:column><h:inputText value="#{MakaleBean.makale.id}" /> </h:column>
+                        <br></br>
+                        
+                        <p:commandButton  value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
+                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
+                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
+                            
+                            <p:commandButton id="selectButton" value="yes"  action="#{MakaleBean.SIL()}" update="msg makalelerTable" oncomplete="cd.hide()">  
+                        <!--<f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />-->  
+                      </p:commandButton> 
+                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
+                        </p:confirmDialog>
+                     
+                      </p:commandButton> 
+                    </p:column>
+    </h:form> 
+       
+        </p:panel>
+    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
             </h:form>
 		<ui:include src="makaleDetailDialog.xhtml" />
-                
+               </ui:define></ui:composition>   
     </h:body>
 </html>
 

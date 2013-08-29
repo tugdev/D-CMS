@@ -161,7 +161,7 @@ public class NodeBean {
         setKategIsmi(null);
     }
     
-     public void sil() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
+     public String sil() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
         
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
     EntityManager em = emf.createEntityManager();
@@ -172,6 +172,7 @@ public class NodeBean {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,null, "Bilgilendirme:Kategoriler Başılığı Silinemez!"));
         
     }
+    
     else{
     kat = em.find(kat.getClass(), kat.getKategoriId()); 
     //em.find ile veritabanımızdaki verdiğimiz id numarasını içeren kayıtı bulup üst tarafta 
@@ -181,10 +182,10 @@ public class NodeBean {
     em.getTransaction().commit(); 
     em.close();
     }
-    
+    return "Sil.xhtml?faces-redirect=true";
      } 
     
-    public void duzenle() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
+    public String duzenle() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
         
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
             EntityManager em = emf.createEntityManager();
@@ -194,7 +195,7 @@ public class NodeBean {
             em.getTransaction().commit();
             em.close();
             emf.close();
-  
+  return "Sil.xhtml?faces-redirect=true";
  
 }
 }

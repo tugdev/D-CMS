@@ -21,9 +21,18 @@ public class Kullanici implements Serializable {
     private String ad;
     private String sifre;
     private String rol;
+    private Integer akpa;
     public static final String AUTH_KEY = "ad";
     public String getAd() {
         return ad;
+    }
+
+    public Integer getAkpa() {
+        return akpa;
+    }
+
+    public void setAkpa(Integer akpa) {
+        this.akpa = akpa;
     }
 
     public void setAd(String ad) {
