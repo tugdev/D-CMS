@@ -6,42 +6,45 @@ Content Manager System projesi(cngym-sozgur-tugdev)
 
 JAVA-JPA-JSF-HİBERNATE-PRİMEFACES-MYSQL Calismasidir.
 
-#####1) (bilinmeyen-admin-normal) Kullaniciyi karsilayan ekran
+#####1) Anasayfada bulunan kategoriler (Login olmadan görülebilir)
 
-![](http://i.imgur.com/JXomkrQ.png)
-#####2) Anasayfada bulunan kategoriler.
+![](http://i.imgur.com/IKwRKDV.png)
+#####2) Anasayfada bulunan makaleler. (Login olmadan görülebilir)
 
-![](http://i.imgur.com/1uf1z51.png)
-#####3) Anasayfada bulunan makaleler.
+![](http://i.imgur.com/boChk8X.png)
+#####3) Kullanici Hesap Ekle
 
-![](http://i.imgur.com/FaH56qq.png)
-#####4) Kullanici girisi (Login Formu)
+![](http://i.imgur.com/0DiCrOO.png)
+#####4) Kullanici girisi (Login Formu) Yanlış giriş yapıldığında uyarı verir.
 
-![](http://i.imgur.com/87IES0U.png)
-#####5) Kullanici Hesap Ekle
+![](http://i.imgur.com/gaatBjW.png)
+#####5) İslemler menusu (Admin Kullanıcı)
 
-![](http://i.imgur.com/t0TdKl0.png)
-#####6) Makale ekle sayfasi (senaryo:Kullanici kendi adina makale ekleyebilir,kendi makalesini duzenleyebilir ve silebilir)
+![](http://i.imgur.com/3wyE32x.png)
+#####6) İslemler menusu (Normal Kullanıcı)
 
-![](http://i.imgur.com/77sFrSb.png)
-#####7) İslemler menusu
+![](http://i.imgur.com/iVM15bg.png)
+#####7) Makale ekle sayfasi (senaryo:Admin ve Normal Kullanıcı kendi adina makale ekleyebilir,kendi makalesini silebilir ve makale okuyabilir)
 
-![](http://i.imgur.com/e6WhrHi.png)
-#####8) Makale oku
+![](http://i.imgur.com/iVM15bg.png)
+#####8) Tüm Makaleleri Silebilir (Admin Kullanıcı)
 
-![](http://i.imgur.com/WaGNTOz.png)
-#####9) Makale listele-oku-sil (senaryo:admin kullanici tüm makaleleri okuyabilir,silebilir ve listeleyebilir)
+![](http://i.imgur.com/F8K2Mk7.png)
+#####9) Yeni kategori eklenebilir (Admin Kullanıcı)
 
-![](http://i.imgur.com/PE2ltIg.png)
-#####10) Kullanici Admin degilse yalniz makale ekleyeblir.
+![](http://i.imgur.com/YQKlrex.png)
+#####10) Kategori düzenleyebilir (Admin Kullanıcı)
 
-![](http://i.imgur.com/EH4wsdg.png)
-#####11) Admin kullanici diger kullanicilari aktif-pasif yapabilir,silebilir ve yeni kullanici ekleyebilir.
+![](http://i.imgur.com/uNrnpUG.png)
+#####11) Kategori silebilir (Admin Kullanıcı)
 
-![](http://i.imgur.com/hIC9FiS.png)
-#####12) Admin yeni kategori  ekleyebilir.
+![](http://i.imgur.com/bRtf6ph.png)
+#####12) Kullanıcı ekleyebilir (Admin Kullanıcı)
 
-![](http://i.imgur.com/73CLlCo.png)
-#####13) Admin kategorileri listeleyebilir,silebilir ve duzenleyebilir.
+![](http://i.imgur.com/EyeCUFA.png)
+#####13) Kullanıcı silebilir (Admin Kullanıcı) Kullanılan hesap silinmek istenirse uyarı verir
 
-![](http://i.imgur.com/VKOLLiE.png)
+![](http://i.imgur.com/1XzeI2b.png)
+#####14) Kullanıcı aktif pasif yapılabilir (Admin Kullanıcı) Admin kullanıcı pasif yapılamaz, uyarı verir
+
+![](http://i.imgur.com/vgf9sEh.png)
