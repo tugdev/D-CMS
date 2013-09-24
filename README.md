@@ -48,3 +48,6 @@ JAVA-JPA-JSF-HİBERNATE-PRİMEFACES-MYSQL Calismasidir.
 #####14) Kullanıcı aktif pasif yapılabilir (Admin Kullanıcı) Admin kullanıcı pasif yapılamaz, uyarı verir
 
 ![](http://i.imgur.com/vgf9sEh.png)
+#####15) Pasif olan kullanıcı sisteme giriş yapmak istediğinde sisteme giriş yapamaz, uyarı verir
+
+![](http://i.imgur.com/8wnWfKG.png)
