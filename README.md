@@ -24,7 +24,7 @@ JAVA-JPA-JSF-HİBERNATE-PRİMEFACES-MYSQL Calismasidir.
 #####6) İslemler menusu (Normal Kullanıcı)
 
 ![](http://i.imgur.com/iVM15bg.png)
-#####7) Makale ekle sayfasi (senaryo:Admin ve Normal Kullanıcı kendi adina makale ekleyebilir,kendi makalesini silebilir ve makale okuyabilir)
+#####7) Makale ekle sayfasi, yazar adı otomatik olarak gelir(senaryo:Admin ve Normal Kullanıcı kendi adina makale ekleyebilir,kendi makalesini silebilir ve makale okuyabilir)
 
 ![](http://i.imgur.com/iVM15bg.png)
 #####8) Tüm Makaleleri Silebilir (Admin Kullanıcı)
