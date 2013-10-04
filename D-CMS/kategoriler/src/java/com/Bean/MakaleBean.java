@@ -4,14 +4,19 @@
  */
 package com.Bean;
 
+import com.kategori.Kategoriler;
+import com.kategori.Kullanici;
 import com.kategori.Makale;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,6 +40,18 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
     private  List<Makale> makaleler;
     private  List<Makale> makaleler2;
     private Makale makale=new Makale();
+    private Kategoriler kat = new Kategoriler();
+ 
+
+
+    public Kategoriler getKat() {
+        return kat;
+    }
+
+    public void setKat(Kategoriler kat) {
+        this.kat = kat;
+    }
+  
 
 //değişken tanımla a1 olsun o zaman a1.ad diye yazcaksın listeleme işlemine
     public Makale getMakale() {
@@ -97,25 +114,22 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
             // performansımızı arttırabiliriz.
             
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
-            EntityManager em = emf.createEntityManager();
-            
-          
-         
+            EntityManager em = emf.createEntityManager(); 
             em.getTransaction().begin();
             em.persist(this.makale);
-           
             em.getTransaction().commit();
             em.close();
             emf.close();
+         
             System.out.println("Kaydedildi...");
         return "giris.xhtml?faces-redirect=true";
+         
 
 
 	
 }
-	public String SIL(){ //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon
-            
-            
+	public void sil(){ //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon
+
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
             EntityManager em = emf.createEntityManager();
             makale = em.find(makale.getClass(), makale.getId()); 
@@ -125,11 +139,10 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
             em.remove(this.makale);
             em.getTransaction().commit(); 
             em.close();	
-            emf.close();
-            System.out.println("Silindi...");
+          
+           
 
-            return "giris.xhtml?faces-redirect=true";
-}
+        }
 	public String GUNCELLE(){ //veritabanımıza update işlemlerinin gerçekleştirildiği fonksiyon
             if(makale.getId()>0){
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
@@ -155,4 +168,12 @@ private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Kateg
 
          
     }
+       public void deneme(){
+           em = emf.createEntityManager();
+           em.getTransaction().begin();
+           Kategoriler katx=em.find(kat.getClass(), kat.getKategoriId());
+           liste=(List<Makale> ) em.createQuery("select i from com.kategori.Makale i where i.kategori=katx").getResultList();
+           System.out.println(liste);
+           em.close();
+       }
 }

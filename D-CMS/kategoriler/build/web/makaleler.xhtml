@@ -16,7 +16,7 @@
             <ui:define name="content" >
          <h:form> 
              
-             <p:panel  header="Makalelerimiz" style="width:70%; margin-left: 200px; margin-right: 250px; margin-top: 15px;margin-bottom: 15px;  font-size: smaller"  >
+             <p:panel id="panel" header="Makaleler" style="border-style: none;background-color: #85A8AE; font-size: larger; margin-left: 110px; margin-right: 1px; ">
      
     <h:form>
       
@@ -47,6 +47,8 @@
             #{makale.tarih}  
         </p:column>
             
+   
+            
        <p:column headerText="oku">  
            <p:commandButton value="Oku" icon="ui-icon-bullet"
 					onclick="makaleDetailDialogWidget.show();"
@@ -55,41 +57,21 @@
 						value="#{makale}" />
 				</p:commandButton>  
         </p:column>
-<!--       <p:column id="msg" style="width:30%" headerText="Sil">
-                    <p:commandButton  value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
-                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
-                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
-                            
-                            <p:commandButton id="selectButton" value="yes"  action="#{MakaleBean.SIL()}" update="msg makalelerTable" oncomplete="cd.hide()">  
-                        <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
-                      </p:commandButton> 
-                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
-                        </p:confirmDialog>
-                     
-                      </p:commandButton> 
-			</p:column> -->
-                     </p:dataTable>
-         <p:column id="msg" style="width:30%" headerText="Sil">
-                        <h:column>Silmek İstediğiniz Makalenin Id No:</h:column>
-                        <h:column><h:inputText value="#{MakaleBean.makale.id}" /> </h:column>
-                        <br></br>
-                        
-                        <p:commandButton  value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
-                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
-                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
-                            
-                            <p:commandButton id="selectButton" value="yes"  action="#{MakaleBean.SIL()}" update="msg makalelerTable" oncomplete="cd.hide()">  
-                        <!--<f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />-->  
-                      </p:commandButton> 
-                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
-                        </p:confirmDialog>
-                     
-                      </p:commandButton> 
-                    </p:column>
+            
+           <p:column>
+                        <f:facet name="header">Sil</f:facet>
+                        <p:commandButton id="selectButton"  action="#{MakaleBean.sil()}" icon="ui-icon-trash" title="Sil">  
+                            <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
+            </p:commandButton> 
+                    </p:column>  
+            
+        </p:dataTable>
+
+
     </h:form> 
        
         </p:panel>
-    <p:messages id="messages" showDetail="true" autoUpdate="true"  /> 
+    <!--<p:messages id="messages" showDetail="true" autoUpdate="true"  />--> 
             </h:form>
 		<ui:include src="makaleDetailDialog.xhtml" />
                </ui:define></ui:composition>   

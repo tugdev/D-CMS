@@ -19,9 +19,9 @@
                 <table border="0">
                     <tr>
                         <td align="left">
-                   <p:panel  header="Makale Ekle" style="width:96%; margin-left: 10px; font-size: smaller; margin-top: 15px;"  >
+                   <p:panel  id="panelId" header="Makale Ekle" style="width:96%; background-color: #85A8AE; margin-left: 10px; font-size: larger; margin-top: 15px;"  >
                  
-                 <h:panelGrid columns="2"  style="font-size: smaller">
+                 <h:panelGrid columns="2"  >
  	<f:facet name="header"></f:facet>
  	<h:column>baslik:</h:column>
         <h:column><h:inputText value="#{MakaleBean.makale.baslik}" /> </h:column>
@@ -29,14 +29,22 @@
         
  	<h:column>yazar : </h:column>
          <h:column>
+            
+             <p:selectOneMenu value="#{MakaleBean.makale.yazar}">  
+                 <f:selectItem itemLabel="#{kullaniciManaged.kullanici.ad}" itemValue="#{kullaniciManaged.kullanici.ad}"/>  
+            
+            
+        </p:selectOneMenu>   
+        
+              
 
-             <h:selectOneMenu  value="#{MakaleBean.makale.yazar}">
-                 <!--burdaki value ile nereye kaydoması gerektiğini söyledik-->
+<!--             <h:selectOneMenu  value="#{MakaleBean.makale.yazar}">
+                 burdaki value ile nereye kaydoması gerektiğini söyledik
                  <f:selectItems  value="#{kullaniciManaged.kullanicilar}" var="items"
                                 itemLabel="#{items.ad}" itemValue="#{items.ad}"/>  
-                 <!--bu value ile nelerin gösterilecegini söyledik-->  
-                 <!--itemLabel listenin neleri gösterecegini,itemValue ise nasıl kaydolacagını belirler.-->
-               </h:selectOneMenu> 
+                 bu value ile nelerin gösterilecegini söyledik  
+                 itemLabel listenin neleri gösterecegini,itemValue ise nasıl kaydolacagını belirler.
+               </h:selectOneMenu> -->
         </h:column>
         
          <h:column>Kategori seciniz : </h:column>
@@ -49,7 +57,7 @@
         </h:column>
           <h:column>tarihi : </h:column>
          <h:column>
-                <p:calendar value="#{MakaleBean.makale.tarih}" id="cal" showButtonPanel="true"/>  
+                <p:calendar value="#{MakaleBean.makale.tarih}" id="cal" showButtonPanel="true" pattern="MM/dd/yyyy HH:mm"/>  
         </h:column>
          
          
@@ -78,18 +86,18 @@
                         <td>
 
  
-   <p:panel  header="#{kullaniciManaged.kullanici.ad} adlı Kullanıcının Makaleleri" style="width:93%;  margin-left: 23px;margin-right: 205px; margin-top: -180px; font-size: smaller"  >
+   <p:panel  header="#{kullaniciManaged.kullanici.ad} adlı Kullanıcının Makaleleri" style="width:103%; background-color: #85A8AE; margin-left: 23px;margin-right:  205px; margin-top: -180px; font-size: larger;"  >
        
 
  <!--<h:outputText value="#{kullaniciManaged.kullanici.ad} Kullanıcının Makaleleri" style="width:300%; font-size: 170%;font-style: italic;color: burlywood "/>-->
         <!--<h:outputLink style=" margin-top: 25px; margin-left: 255px; ">   Makaleler  </h:outputLink>--> 
-        <p:dataTable id="makalelerTable" value="#{MakaleBean.makaleler}"
+        <p:dataTable  id="makalelerTable" value="#{MakaleBean.makaleler}"
 			var="makale" emptyMessage="Kayıt Yok" paginator="true" rows="5"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15" style="width: 90%">
+			rowsPerPageTemplate="5,10,15" style="width: 100% ">
 			
                 
-                       <p:column style="width:20%">
+                       <p:column style="width:20%" >
 				<f:facet name="header">
 					<h:outputText value="Başlık" />
 				</f:facet>
@@ -132,7 +140,7 @@
 			</p:column>
             
             <p:column style="width:30%">
-                    <p:commandButton rendered="#{ makale.yazar eq kullaniciManaged.kullanici.ad }" id="selectButton" value="Sil"  action="#{MakaleBean.SIL()}" icon="ui-icon-trash" title="Sil">  
+                <p:commandButton update="makalelerTable" rendered="#{ makale.yazar eq kullaniciManaged.kullanici.ad }" id="selectButton" value="Sil"  action="#{MakaleBean.sil()}" icon="ui-icon-trash" title="Sil">  
                         <f:setPropertyActionListener value="#{makale.id}" target="#{MakaleBean.makale.id}" />  
                       </p:commandButton> 
 			</p:column>
@@ -152,15 +160,7 @@
                      
                       </p:commandButton> 
 			</p:column>           -->
-               
-                <p:column style="width:20%">
-				<p:commandButton rendered="#{ makale.yazar eq kullaniciManaged.kullanici.ad }" value="Düzenle" icon="ui-icon-pencil"
-					onclick="makaleDetailDialogWidget.show();"
-					update=":makaleDetailDialogForm">
-                                    <f:setPropertyActionListener target="#{MakaleBean.makale}"
-						value="#{makale}" />
-				</p:commandButton>
-			</p:column>
+   
 <!--            <p:column style="width:20%">
 				<p:commandButton value="Yayınla" icon="ui-icon-pencil"
 					onclick="makaleDetailDialogWidget.show();"

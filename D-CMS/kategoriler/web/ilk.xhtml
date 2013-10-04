@@ -12,7 +12,7 @@
         <title>Anasayfa</title>
     </h:head>
     <h:body>
-            <p:toolbar style="font-size: smaller; background-color: #dddddd">  
+            <p:toolbar style="font-size: smaller; background-color: #85A8AE">  
     <p:toolbarGroup align="left">  
         <p:button outcome="login" id="basic" value="Login"  icon="ui-icon-extlink" style="font-size: smaller; background-color: whitesmoke"/> 
         <p:button outcome="hesapEkle" value="Hesap Ekle" icon="ui-icon-star" style="font-size: smaller; background-color: whitesmoke"></p:button> 
@@ -23,18 +23,35 @@
         <br/><br/>
        <h:form>  
            
-       <p:tabView   orientation="left"  id="tabVi"  style="width: 80%; border-style: none;margin-left: 60px; background-color: #dddddd;font-size: smaller">  
+       <p:tabView   orientation="left"  id="tabVi"  style="width: 80%; border-style: none;margin-left: 60px; background-color: #85A8AE;font-size: smaller">  
                
            <p:tab id="ekle" title="Kategoriler ve Alt kategoriler"  >  
               
                <p:panel id="panelId" style=" font-size: smaller">
                    
+                   <p:treeTable value="#{nodeBean.root}" var="document" id="multiSelect"  
+                 selection="#{nodeBean.selectedNode}" selectionMode="multiple">  
+  
+  
+        <p:column style="width:150px">  
+            <f:facet name="header">  
+                Kategoriler  
+            </f:facet>  
+            <h:outputText value="#{document}" />  
+        </p:column>  
+    
+  
+<!--        <f:facet name="footer">  
+            <p:commandButton value="Listele" action="#{MakaleBean.deneme()}"/>  
+        </f:facet>  -->
+    </p:treeTable>
+<!--                   
                    <p:tree value="#{nodeBean.root}" var="node" dynamic="true"
                         selectionMode="single" selection="#{nodeBean.selectedNode}">
                     <p:treeNode>
                         <h:outputText value="#{node}"/>
                     </p:treeNode>
-                   </p:tree>
+                   </p:tree>-->
              
                 <h:message for="id"/>
                 

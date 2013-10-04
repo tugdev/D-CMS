@@ -129,7 +129,7 @@ public class KullaniciManaged implements PhaseListener {
 
             System.out.println("Digest(in hex format):: " + sb.toString());
             
-            if ((k.getAd().equals(kullanici.getAd())) && k.getSifre().equals(sb.toString())) {
+             if (k.getAd().equals(kullanici.getAd()) && k.getSifre().equals(sb.toString()) && k.getAkpa().equals(0)) {
                     
                 kullanici.setId(k.getId());
                 kullanici.setRol(k.getRol());
@@ -137,12 +137,18 @@ public class KullaniciManaged implements PhaseListener {
                 return "giris.xhtml?faces-redirect=true";
                
             }
+             else if(k.getAd().equals(kullanici.getAd()) && k.getSifre().equals(sb.toString()) && k.getAkpa().equals(1)){
+                 t=2;
+             }
+    
         }
         if(t==0)
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,null, "Bilgilendirme:Yanlis Kullanici Adi Veya Sifre"));
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,null, "Bilgilendirme:Yanlis kullanıcı adı veya Şifre "));
+        else if(t==2)
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,null, "Bilgilendirme:Hesabınız Admin tarafından Pasif hale getirilmiştir! "));
         em.close();
-        return "";
-    }
+           return "";
+          }
       
     public void ekle() throws NoSuchAlgorithmException {
            String[] roles = null;
@@ -186,6 +192,7 @@ public class KullaniciManaged implements PhaseListener {
                 System.out.println("Digest(in hex format):: " + sb.toString());
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Yeni Kullanici Oluşturulmuştur ."));
                 ekleKullanici.setSifre(sb.toString());
+                ekleKullanici.setAkpa(0);
                 em.persist(this.ekleKullanici);
  kullanicilar = (List<Kullanici>) em.createQuery("select i from com.kategori.Kullanici i").getResultList();
             }
@@ -321,7 +328,7 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
    if(isIsSessionOpen()==false){
        
 
-        if ((page.lastIndexOf("giris.xhtml") > -1)||(page.lastIndexOf("kullanici_ekle.xhtml") > -1)||(page.lastIndexOf("makaleler.xhtml") > -1)||(page.lastIndexOf("makaleDetailDialog.xhtml")>-1)||(page.lastIndexOf("index.xhtml")>-1)||(page.lastIndexOf("Duzenle.xhtml") > -1)||(page.lastIndexOf("EditComplete.xhtml")>-1)||(page.lastIndexOf("Sil.xhtml")>-1)||(page.lastIndexOf("talimat.xhtml")>-1)) {
+        if ((page.lastIndexOf("hosgeldin.xhtml") > -1)||(page.lastIndexOf("kullanici_ekle.xhtml") > -1)||(page.lastIndexOf("makaleler.xhtml") > -1)||(page.lastIndexOf("makaleDetailDialog.xhtml")>-1)||(page.lastIndexOf("index.xhtml")>-1)||(page.lastIndexOf("Duzenle.xhtml") > -1)||(page.lastIndexOf("EditComplete.xhtml")>-1)||(page.lastIndexOf("Sil.xhtml")>-1)) {
             
             KullaniciManaged.setIsSessionOpen(checkValidUser());
             if (isIsSessionOpen() == false) {
@@ -345,7 +352,8 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
     public PhaseId getPhaseId() {
        return PhaseId.RESTORE_VIEW;
     }
-   @SuppressWarnings("unchecked")
+   
+@SuppressWarnings("unchecked")
 	public KullaniciManaged()  {
 //burada "CRUDPU" bir önceki yazıda persistence-unit e verdiğimiz ad. 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
@@ -359,7 +367,7 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
 }
            
 
-           public void aktifpasif() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
+           public void aktifpasif() throws NoSuchAlgorithmException { 
         
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
             EntityManager em = emf.createEntityManager();
@@ -381,4 +389,8 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
             em.close();
             emf.close();
 }
+
+    
+    
 }
+

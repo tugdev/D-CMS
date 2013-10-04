@@ -24,7 +24,7 @@ public class Kullanici implements Serializable {
     private Integer akpa;
     public static final String AUTH_KEY = "ad";
     public String getAd() {
-        return ad;
+        return ad;         
     }
 
     public Integer getAkpa() {

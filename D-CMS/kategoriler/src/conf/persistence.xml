@@ -4,8 +4,6 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <non-jta-data-source/>
     <class>com.kategori.Kategoriler</class>
-    <class>com.kategori.Aktif</class>
-    <class>com.kategori.Pasif</class>
     <class>com.kategori.Kullanici</class>
     <class>com.kategori.Dialog</class>
     <class>com.kategori.Makale</class>

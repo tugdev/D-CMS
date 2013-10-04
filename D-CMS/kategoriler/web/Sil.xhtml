@@ -17,7 +17,7 @@
             <ui:define name="content" >
        
  <h:form>
-            <p:panel id="panel" header="kategoriler" style="border-style: none;background-color: #dddddd; font-size: smaller;margin-left: 200px;">
+            <p:panel id="panel" header="kategoriler" style="border-style: none;background-color: #85A8AE; font-size: larger; margin-left: 110px; margin-right: 1px; ">
                 <p:dataTable id="kategoriTable" value="#{editBean.allRecordList}" var="items" paginator="true"
                              rows="5" rowsPerPageTemplate="5,10,30"
                              paginatorTemplate="{FirstPageLink} {PageLinks} {NextPageLink}
@@ -36,64 +36,16 @@
                     </p:column>
 
 
-<!--                  <p:column>
+                  <p:column>
                         <f:facet name="header">Sil</f:facet>
              <p:commandButton id="selectButton"  action="#{nodeBean.sil()}" icon="ui-icon-trash" title="Sil">  
                  <f:setPropertyActionListener value="#{items.kategoriId}" target="#{nodeBean.kat.kategoriId}" />  
             </p:commandButton> 
-                    </p:column>-->
+                    </p:column>
 
-<!--       <p:column id="msg" style="width:30%">
-                    <p:commandButton value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
-                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
-                                         header="makale sil-onayla" severity="alert" widgetVar="cd">
-                            
-                            
 
-                            <p:commandButton id="selectButton" value="yes"  action="#{nodeBean.sil()}" update="msg kategoriTable" oncomplete="cd.hide()">  
-                        <f:setPropertyActionListener value="#{items.kategoriId}" target="#{nodeBean.kat.kategoriId}" />  
-                      </p:commandButton> 
-                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
-                        </p:confirmDialog>
-                     
-                      </p:commandButton> 
-			</p:column>  -->
-                    
                 </p:dataTable>
-                <table border="0">
-                    <tr align="center">
-                        <td width="65%">
-                            <p:column>
-                        <h:column>Düzenlemek İstediğiniz Kategorinin Kategori Id No:</h:column>
-                        <h:column><h:inputText value="#{nodeBean.kat.kategoriId}" /> </h:column>
-                        <br></br>
-                        <h:column>Yeni Kategori Adı:</h:column>
-                        <h:column><h:inputText value="#{nodeBean.kat.kategoriAdi}" /> </h:column>
-                        <br></br>
-                        <p:commandButton action="#{nodeBean.duzenle()}" value="Düzenle" ajax="false" update="panel"/> 
-                    </p:column>
-                        </td>
-                        <td width="50%" >
-                             <p:column id="msg" style="width:30%" headerText="Sil">
-                        <h:column>Silmek İstediğiniz kategorinin Id No:</h:column>
-                        <h:column><h:inputText value="#{nodeBean.kat.kategoriId}" /> </h:column>
-                        <br></br>
-                        
-                        <p:commandButton  value="Sil" onclick="cd.show()" icon="ui-icon-trash" title="Sil">  
-                        <p:confirmDialog message="silmek istediğinize eminmisiniz?"
-                                         header="kategori sil-onayla" severity="alert" widgetVar="cd">
-                            
-                            <p:commandButton id="selectButton" value="yes"  action="#{nodeBean.sil()}" update="msg kategoriTable" oncomplete="cd.hide()">  
-                                <!--<f:setPropertyActionListener value="#{items.kategoriId}" target="#{nodeBean.kat.kategoriId}" />-->  
-                      </p:commandButton> 
-                            <p:commandButton value="no" onclick="cd.hide()" type="button"/>
-                        </p:confirmDialog>
-                     
-                      </p:commandButton> 
-                    </p:column>
-                        </td>
-                    </tr>
-                </table>
+                
               
             </p:panel>
         <p:messages id="messages" showDetail="true" autoUpdate="true"  />

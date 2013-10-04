@@ -2,9 +2,20 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="index.xhtml" x="269" y="36" zoom="true"/>
+        <Node id="TemplateClient.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="login.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="ilk.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="kullanici_ekle.xhtml" x="650" y="450" zoom="true"/>
         <Node id="Duzenle.xhtml" x="400" y="150" zoom="true"/>
         <Node id="Sil.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="makaleler.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="Template.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="hesapEkle.xhtml" x="413" y="320" zoom="true"/>
+        <Node id="giris.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="269" y="36" zoom="true"/>
+        <Node id="makaleDetailDialog.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="talimat.xhtml" x="59" y="291" zoom="true"/>
+        <Node id="AktifPasif.xhtml" x="939" y="291" zoom="true"/>
         <Node id="EditComplete.xhtml" x="274" y="290" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

@@ -232,41 +232,7 @@ public class loginBean {
         
     }
      
-     
-        @SuppressWarnings("unchecked")
-	public loginBean()  {
-//burada "CRUDPU" bir önceki yazıda persistence-unit e verdiğimiz ad. 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
-	// Önce Persistence nesnesinden EntityManaegerFactory oluşturulur.
-	EntityManager em =emf.createEntityManager();
-	// EntityManagerFactory'den EntityManager oluşturulur.
-	kisilerliste=em.createQuery("select i from com.kategori.Dialog i").getResultList();
-	//ust tarafta olusturdugum kisiler adlı liste bilgiler kaydettik.
-	em.close();
-	emf.close();
-}
+ 
         
-         public void pasif() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
-        
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
-            EntityManager em = emf.createEntityManager();
-            em.getTransaction().begin();
-            Dialog user=em.find(a1.getClass(), a1.getId());
-            user.setAkpa(1);
-            em.getTransaction().commit();
-            em.close();
-            emf.close();
-}
-           public void aktif() throws NoSuchAlgorithmException { //veritabanımıza Delete işlemlerinin gerçekleştirildiği fonksiyon     
-        
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("KategorilerPU");
-            EntityManager em = emf.createEntityManager();
-            em.getTransaction().begin();
-            Dialog user=em.find(a1.getClass(), a1.getId());
-            user.setAkpa(0);
-            em.getTransaction().commit();
-            em.close();
-            emf.close();
-}
 }
 

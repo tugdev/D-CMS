@@ -3,14 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <f:view contentType="text/html">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <ui:composition template="/Template.xhtml">
+
+            <ui:define name="content" >
         <h:form>
-            <p:panel header="PrimeFaces ile listeleme">
-                <p:dataTable value="#{editBean.allRecordList}" var="items" paginator="true"
+            <p:panel id="panel" header="kategoriler" style="border-style: none;background-color: #85A8AE; font-size: larger; margin-left: 110px; margin-right: 1px; ">
+                <p:dataTable id="kategoriTable" value="#{editBean.allRecordList}" var="items" paginator="true"
                              rows="5" rowsPerPageTemplate="5,10,30"
                              paginatorTemplate="{FirstPageLink} {PageLinks} {NextPageLink}
                              {RowsPerPageDropdown}">
@@ -38,9 +44,11 @@
                         <p:commandButton action="#{nodeBean.duzenle()}" value="Düzenle" ajax="false" update="panel"/> 
                     </p:column>
                 <br></br>
-                <h:outputLink value="index.xhtml">Ana Sayfa</h:outputLink>
+                
             </p:panel>
         </h:form>
+                 </ui:define></ui:composition>      
     </h:body>
+        </f:view>
 </html>
 
